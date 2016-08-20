@@ -3,26 +3,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>在hexo中加入多说评论模块 | Joel&#39;s blog | Nice to meet you</title>
+  <title>移动web性能优化篇-图片的影响 | Joel&#39;s blog | Nice to meet you</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#22242b">
   
   
-  <meta name="keywords" content="hexo,多说,评论">
-  <meta name="description" content="首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(http://shenjoel.github.io/)。如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的
-1234567&amp;lt;% if (!i">
+  <meta name="keywords" content="优化,图片,移动WEB">
+  <meta name="description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在hexo中加入多说评论模块">
-<meta property="og:url" content="http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/index.html">
+<meta property="og:title" content="移动web性能优化篇-图片的影响">
+<meta property="og:url" content="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html">
 <meta property="og:site_name" content="Joel's blog">
-<meta property="og:description" content="首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(http://shenjoel.github.io/)。如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的
-1234567&amp;lt;% if (!i">
-<meta property="og:updated_time" content="2016-08-20T07:46:49.864Z">
+<meta property="og:description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
+<meta property="og:image" content="http://shenjoel.github.io//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png">
+<meta property="og:updated_time" content="2016-08-20T09:34:43.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在hexo中加入多说评论模块">
-<meta name="twitter:description" content="首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(http://shenjoel.github.io/)。如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的
-1234567&amp;lt;% if (!i">
+<meta name="twitter:title" content="移动web性能优化篇-图片的影响">
+<meta name="twitter:description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
+<meta name="twitter:image" content="http://shenjoel.github.io//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png">
   
     <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
   
@@ -104,7 +112,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">在hexo中加入多说评论模块</div>
+        <div class="flex-col header-title ellipsis">移动web性能优化篇-图片的影响</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -125,11 +133,11 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">在hexo中加入多说评论模块</h1>
+    <h1 class="author">移动web性能优化篇-图片的影响</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-19T07:51:58.000Z" itemprop="datePublished" class="page-time">
-  2016-08-19
+            <time datetime="2016-08-20T08:27:25.000Z" itemprop="datePublished" class="page-time">
+  2016-08-20
 </time>
 
 
@@ -139,11 +147,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-在hexo中加入多说评论" 
+      <article id="post-移动web性能优化篇-图片的加载" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多说/">多说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/评论/">评论</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动WEB/">移动WEB</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -198,14 +206,23 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(<a href="http://shenjoel.github.io/)。">http://shenjoel.github.io/)。</a><br>如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">	 &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% if (!index &amp;&amp; page.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">&lt;section id=&quot;comments&quot;&gt;</div><div class="line">	&lt;!-- 多说评论框 start --&gt;</div><div class="line">	&lt;div id=&quot;ds-thread&quot; class=&quot;ds-thread&quot; data-thread-key=&quot;&lt;%= page.path %&gt;&quot; data-title=&quot;&lt;%= page.title %&gt;&quot; data-url=&quot;&lt;%= page.permalink %&gt;&quot;&gt;&lt;/div&gt;</div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">		var duoshuoQuery = &#123;short_name:&quot;datoublog&quot;&#125;;</div><div class="line">		(function() &#123;</div><div class="line">		var ds = document.createElement(&apos;script&apos;);</div><div class="line">		ds.type = &apos;text/javascript&apos;;ds.async = true;</div><div class="line">		ds.src = (document.location.protocol == &apos;https:&apos; ? &apos;https:&apos; : &apos;http:&apos;) + &apos;//static.duoshuo.com/embed.js&apos;;</div><div class="line">		ds.charset = &apos;UTF-8&apos;;</div><div class="line">		(document.getElementsByTagName(&apos;head&apos;)[0] </div><div class="line">		 || document.getElementsByTagName(&apos;body&apos;)[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+            <p>本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。</p>
+<p>我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 <a href="https://developer.mozilla.org/en/docs/Web/Events/DOMContentLoaded" target="_blank" rel="external">MDN</a> 对它的描述：</p>
+<blockquote>
+<p>The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.</p>
+</blockquote>
+<p>但在实际测试中，移动端完全相同的页面，加载与不加载图片对 DOMContentLoaded 触发时机的影响却很大。以下是我们在某个移动产品中，将图片延迟加载后的 DOMContentLoaded 时间对比，可以看出明显变化：<br><img src="//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png" alt=""></p>
+<p>我们只是将页面所有图片（大约十几张）进行延迟加载，就让 DOMContentLoaded 事件提前 250 毫秒触发。这是我之前没有意料到的，移动设备在网络、CPU、内存等方面的性能与 PC 相比差距很大，很多 PC 上可以忽略的问题，在移动端必须重视起来。</p>
+<p>移动 WEB 要做好图片优化，无外乎两点：</p>
+<ul>
+<li>控制图片大小</li>
+<li>控制图片加载</li>
+</ul>
+
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/</a>
+                <a href="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/</a>
                 </p>
                 <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
             </blockquote>
@@ -213,19 +230,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/20/移动web性能优化篇-图片的加载/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">移动web性能优化篇-图片的影响</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/19/hello-world/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/19/在hexo中加入多说评论/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Hello World</h4>
+        <h4 class="title">在hexo中加入多说评论模块</h4>
       </a>
     </div>
   
@@ -236,7 +246,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="在hexo中加入多说评论" data-title="在hexo中加入多说评论模块" data-url="http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/index.html"></div>
+	<div class="ds-thread" data-thread-key="移动web性能优化篇-图片的加载" data-title="移动web性能优化篇-图片的影响" data-url="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -267,10 +277,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "在hexo中加入多说评论模块",
+    title: "移动web性能优化篇-图片的影响",
     pic: "/img/brand.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/index.html"
+    url: "http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
