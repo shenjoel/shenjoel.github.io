@@ -3,26 +3,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>移动web性能优化篇-图片的加载 | Joel&#39;s blog | Nice to meet you</title>
+  <title>移动web性能优化篇-图片的影响 | Joel&#39;s blog | Nice to meet you</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#22242b">
   
   
   <meta name="keywords" content="移动WEB,优化,图片">
-  <meta name="description" content="控制图片加载在移动浏览器打开网页，经常能感觉到明显的卡顿。造成卡顿的原因除了页面 DOM 结构复杂、CSS 过多地触发 Layout/Paint/Composite、存在复杂 JS 逻辑等等，也可能是没有控制图片的加载时机。
-通常浏览器会并发加载 6 个同域名图片，如果做了域名散列，那很可能在打开页面后的短短几秒内，几十个图片都在加载。这些连接带来的 TCP、带宽、CPU、内存等开销，很容易让页面">
+  <meta name="description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动web性能优化篇-图片的加载">
-<meta property="og:url" content="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html">
+<meta property="og:title" content="移动web性能优化篇-图片的影响">
+<meta property="og:url" content="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的影响/index.html">
 <meta property="og:site_name" content="Joel's blog">
-<meta property="og:description" content="控制图片加载在移动浏览器打开网页，经常能感觉到明显的卡顿。造成卡顿的原因除了页面 DOM 结构复杂、CSS 过多地触发 Layout/Paint/Composite、存在复杂 JS 逻辑等等，也可能是没有控制图片的加载时机。
-通常浏览器会并发加载 6 个同域名图片，如果做了域名散列，那很可能在打开页面后的短短几秒内，几十个图片都在加载。这些连接带来的 TCP、带宽、CPU、内存等开销，很容易让页面">
-<meta property="og:updated_time" content="2016-08-20T09:59:40.622Z">
+<meta property="og:description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
+<meta property="og:image" content="http://shenjoel.github.io//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png">
+<meta property="og:updated_time" content="2016-08-20T09:55:28.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动web性能优化篇-图片的加载">
-<meta name="twitter:description" content="控制图片加载在移动浏览器打开网页，经常能感觉到明显的卡顿。造成卡顿的原因除了页面 DOM 结构复杂、CSS 过多地触发 Layout/Paint/Composite、存在复杂 JS 逻辑等等，也可能是没有控制图片的加载时机。
-通常浏览器会并发加载 6 个同域名图片，如果做了域名散列，那很可能在打开页面后的短短几秒内，几十个图片都在加载。这些连接带来的 TCP、带宽、CPU、内存等开销，很容易让页面">
+<meta name="twitter:title" content="移动web性能优化篇-图片的影响">
+<meta name="twitter:description" content="本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。
+我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 MDN 对它的描述：
+
+The DOMContentLoaded event is fired when the initial HTML document has">
+<meta name="twitter:image" content="http://shenjoel.github.io//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png">
   
     <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
   
@@ -104,7 +112,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">移动web性能优化篇-图片的加载</div>
+        <div class="flex-col header-title ellipsis">移动web性能优化篇-图片的影响</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -125,10 +133,10 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">移动web性能优化篇-图片的加载</h1>
+    <h1 class="author">移动web性能优化篇-图片的影响</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-20T09:55:40.000Z" itemprop="datePublished" class="page-time">
+            <time datetime="2016-08-20T08:27:25.000Z" itemprop="datePublished" class="page-time">
   2016-08-20
 </time>
 
@@ -139,7 +147,7 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-移动web性能优化篇-图片的加载" 
+      <article id="post-移动web性能优化篇-图片的影响" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
@@ -190,7 +198,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#控制图片加载"><span class="post-toc-text">控制图片加载</span></a></li></ol>
+            
             </nav>
             
         </aside>
@@ -198,18 +206,23 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="控制图片加载"><a href="#控制图片加载" class="headerlink" title="控制图片加载"></a>控制图片加载</h3><p>在移动浏览器打开网页，经常能感觉到明显的卡顿。造成卡顿的原因除了页面 DOM 结构复杂、CSS 过多地触发 Layout/Paint/Composite、存在复杂 JS 逻辑等等，也可能是没有控制图片的加载时机。</p>
-<p>通常浏览器会并发加载 6 个同域名图片，如果做了域名散列，那很可能在打开页面后的短短几秒内，几十个图片都在加载。这些连接带来的 TCP、带宽、CPU、内存等开销，很容易让页面卡顿。所以在移动端，我们要让图片加载变得可控。</p>
+            <p>本文主要讨论在移动 WEB 中，图片的加载给页面整体性能带来的影响以及优化策略。</p>
+<p>我们知道，浏览器的 DOMContentLoaded 事件会在主页面加载并解析完成之后触发，不会等页面样式、图片、iframe 等子资源加载完。以下是 <a href="https://developer.mozilla.org/en/docs/Web/Events/DOMContentLoaded" target="_blank" rel="external">MDN</a> 对它的描述：</p>
+<blockquote>
+<p>The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.</p>
+</blockquote>
+<p>但在实际测试中，移动端完全相同的页面，加载与不加载图片对 DOMContentLoaded 触发时机的影响却很大。以下是我们在某个移动产品中，将图片延迟加载后的 DOMContentLoaded 时间对比，可以看出明显变化：<br><img src="//st.imququ.com/i/webp/static/uploads/2015/10/dom-ready-time.png" alt=""></p>
+<p>我们只是将页面所有图片（大约十几张）进行延迟加载，就让 DOMContentLoaded 事件提前 250 毫秒触发。这是我之前没有意料到的，移动设备在网络、CPU、内存等方面的性能与 PC 相比差距很大，很多 PC 上可以忽略的问题，在移动端必须重视起来。</p>
+<p>移动 WEB 要做好图片优化，无外乎两点：</p>
 <ul>
-<li><strong> 按需加载图片。 </strong>在 PC 端，我们基本都会做图片 Lazy Load，这个优化策略在移动端同样适用。由于移动端性能有限、带宽昂贵，Lazy Load 更为重要。实际上不光是图片可以做 Lazy Load，页面所有资源包括 DOM 节点都应该做成按需加载。通常在移动端，我们只加载页面可视区域及其下方一定距离内的资源。</li>
-<li><strong> 顺序加载图片。 </strong>在 PC 端，由于硬件性能和带宽足够，并行加载更多的图片通常是最好的选择。而在移动端，人为控制图片加载顺序，例如使其从上到下、从左到右逐个加载，有时可以带来更好的体验。</li>
-<li><strong> 不要在页面滚定时加载图片。 </strong>按需加载图片逻辑需要监听页面滚动事件，根据页面当前可视区域决定加载哪些图片。在移动端滚动页面本来就很耗费性能，如果这时候还要加载图片，非常容易造成页面卡顿。在页面滚定停止之后才开始载入图片，能有效减少这种卡顿。</li>
+<li><a href="/2016/08/20/移动web性能优化篇-图片的大小/">控制图片大小</a></li>
+<li><a href="/2016/08/20/移动web性能优化篇-图片的加载/">控制图片加载</a></li>
 </ul>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/</a>
+                <a href="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的影响/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的影响/</a>
                 </p>
                 <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
             </blockquote>
@@ -217,12 +230,19 @@
             
 <nav class="post-nav">
   
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2016/08/20/移动web性能优化篇-图片的大小/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">移动web性能优化篇-图片的大小</h4>
+      </a>
+    </div>
+  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/20/移动web性能优化篇-图片的大小/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/19/hello-world/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">移动web性能优化篇-图片的大小</h4>
+        <h4 class="title">Hello World</h4>
       </a>
     </div>
   
@@ -233,7 +253,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="移动web性能优化篇-图片的加载" data-title="移动web性能优化篇-图片的加载" data-url="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html"></div>
+	<div class="ds-thread" data-thread-key="移动web性能优化篇-图片的影响" data-title="移动web性能优化篇-图片的影响" data-url="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的影响/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -264,10 +284,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "移动web性能优化篇-图片的加载",
+    title: "移动web性能优化篇-图片的影响",
     pic: "/img/brand.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的加载/index.html"
+    url: "http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的影响/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
