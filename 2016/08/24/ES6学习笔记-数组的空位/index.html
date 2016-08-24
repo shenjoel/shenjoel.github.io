@@ -20,7 +20,7 @@
 <meta property="og:description" content="数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。1Array(3) // [, , ,]
 上面代码中，Array(3)返回一个具有3个空位的数组。
 注意，空位不是undefined，一个位置的值等于undefined，依然是有值的。空位是没有任何值，in运算符可以说明这一点。120 in [undefined, undefined, undefined] //">
-<meta property="og:updated_time" content="2016-08-24T10:32:13.880Z">
+<meta property="og:updated_time" content="2016-08-24T10:59:00.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6学习笔记-数组的空位">
 <meta name="twitter:description" content="数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。1Array(3) // [, , ,]
@@ -82,9 +82,23 @@
         </li>
     
         <li class="waves-block waves-effect">
-          <a href="https://wurh.github.io/"  >
+          <a href="/"  >
             <i class="icon icon-lg icon-link"></i>
-            友链
+            友情链接
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://wurh.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links1"></i>
+            华ing&#39;s blog
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://firewood1122.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links2"></i>
+            firewood&#39;s blog
           </a>
         </li>
     
@@ -201,20 +215,25 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></div></pre></td></tr></table></figure></p>
+            <p>数组的空位指，数组的某一个位置没有任何值。比如，<strong>Array</strong>构造函数返回的数组都是空位。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">3</span>) <span class="comment">// [, , ,]</span></div></pre></td></tr></table></figure></p>
 <p>上面代码中，Array(3)返回一个具有3个空位的数组。</p>
-<p>注意，空位不是undefined，一个位置的值等于undefined，依然是有值的。空位是没有任何值，in运算符可以说明这一点。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span> <span class="keyword">in</span> [<span class="literal">undefined</span>, <span class="literal">undefined</span>, <span class="literal">undefined</span>] <span class="comment">// true</span></div><div class="line"><span class="number">0</span> <span class="keyword">in</span> [, , ,] <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p>注意，空位不是<strong>undefined</strong>，一个位置的值等于<strong>undefined</strong>，依然是有值的。空位是没有任何值，in运算符可以说明这一点。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span> <span class="keyword">in</span> [<span class="literal">undefined</span>, <span class="literal">undefined</span>, <span class="literal">undefined</span>] <span class="comment">// true</span></div><div class="line"><span class="number">0</span> <span class="keyword">in</span> [, , ,] <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
 <p>ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位。</p>
 <ul>
 <li>forEach(), filter(), every() 和some()都会跳过空位。</li>
 <li>map()会跳过空位，但会保留这个值</li>
-<li>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。</li>
+<li>join()和toString()会将空位视为<strong>undefined</strong>，而<strong>undefined</strong>和<strong>null</strong>会被处理成空字符串。</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// forEach方法</span></div><div class="line">[,<span class="string">'a'</span>].forEach((x,i) =&gt; <span class="built_in">console</span>.log(i)); <span class="comment">// 1</span></div><div class="line"><span class="comment">// filter方法</span></div><div class="line">[<span class="string">'a'</span>,,<span class="string">'b'</span>].filter(x =&gt; <span class="literal">true</span>) <span class="comment">// ['a','b']</span></div><div class="line"><span class="comment">// every方法</span></div><div class="line">[,<span class="string">'a'</span>].every(x =&gt; x===<span class="string">'a'</span>) <span class="comment">// true</span></div><div class="line"><span class="comment">// some方法</span></div><div class="line">[,<span class="string">'a'</span>].some(x =&gt; x !== <span class="string">'a'</span>) <span class="comment">// false</span></div><div class="line"><span class="comment">// map方法</span></div><div class="line">[,<span class="string">'a'</span>].map(x =&gt; <span class="number">1</span>) <span class="comment">// [,1]</span></div><div class="line"><span class="comment">// join方法</span></div><div class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].join(<span class="string">'#'</span>) <span class="comment">// "#a##"</span></div><div class="line"><span class="comment">// toString方法</span></div><div class="line">[,<span class="string">'a'</span>,<span class="literal">undefined</span>,<span class="literal">null</span>].toString() <span class="comment">// ",a,,"</span></div></pre></td></tr></table></figure>
-<p>ES6则是明确将空位转为undefined。</p>
-<blockquote>
-<p><strong><strong>由于空位的处理规则非常不统一，所以建议避免出现空位。</strong></strong></p>
-</blockquote>
+<p>ES6则是明确将空位转为<strong>undefined</strong>。</p>
+<p><strong>Array.from</strong>方法会将数组的空位，转为<strong>undefined</strong>，也就是说，这个方法不会忽略空位。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>.from([<span class="string">'a'</span>,,<span class="string">'b'</span>])</div><div class="line"><span class="comment">// [ "a", undefined, "b" ]</span></div></pre></td></tr></table></figure></p>
+<p>扩展运算符（<strong>…</strong>）也会将空位转为<strong>undefined</strong>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[...[<span class="string">'a'</span>,,<span class="string">'b'</span>]]</div><div class="line"><span class="comment">// [ "a", undefined, "b" ]</span></div></pre></td></tr></table></figure></p>
+<p><strong>copyWithin()</strong>会连空位一起拷贝。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[...[<span class="string">'a'</span>,,<span class="string">'b'</span>]]</div><div class="line"><span class="comment">// [ "a", undefined, "b" ]</span></div></pre></td></tr></table></figure></p>
+<p><strong>fill()</strong>会将空位视为正常的数组位置。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="string">'a'</span>) <span class="comment">// ["a","a","a"]</span></div></pre></td></tr></table></figure></p>
+<p><strong>for…of</strong>循环也会遍历空位。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr = [, ,];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">of</span> arr) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 1</span></div><div class="line"><span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，数组arr有两个空位，<strong>for…of</strong>并没有忽略它们。如果改成map方法遍历，空位是会跳过的。</p>
+<p><strong>entries()</strong>、<strong>keys()</strong>、<strong>values()</strong>、<strong>find()</strong>和<strong>findIndex()</strong>会将空位处理成<strong>undefined</strong>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entries()</span></div><div class="line">[...[,<span class="string">'a'</span>].entries()] <span class="comment">// [[0,undefined], [1,"a"]]</span></div><div class="line"><span class="comment">// keys()</span></div><div class="line">[...[,<span class="string">'a'</span>].keys()] <span class="comment">// [0,1]</span></div><div class="line"><span class="comment">// values()</span></div><div class="line">[...[,<span class="string">'a'</span>].values()] <span class="comment">// [undefined,"a"]</span></div><div class="line"><span class="comment">// find()</span></div><div class="line">[,<span class="string">'a'</span>].find(x =&gt; <span class="literal">true</span>) <span class="comment">// undefined</span></div><div class="line"><span class="comment">// findIndex()</span></div><div class="line">[,<span class="string">'a'</span>].findIndex(x =&gt; <span class="literal">true</span>) <span class="comment">// 0</span></div></pre></td></tr></table></figure></p>
+<p>由于空位的处理规则非常不统一，所以建议避免出现空位。</p>
 
             <blockquote>
                 <p>
