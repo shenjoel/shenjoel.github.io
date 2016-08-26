@@ -81,7 +81,7 @@
     <link href="http://shenjoel.github.io/2016/08/26/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96/"/>
     <id>http://shenjoel.github.io/2016/08/26/ES6学习笔记-尾调用优化/</id>
     <published>2016-08-26T07:24:56.000Z</published>
-    <updated>2016-08-26T08:12:48.030Z</updated>
+    <updated>2016-08-26T08:59:57.791Z</updated>
     
     <content type="html"><![CDATA[<h3 id="什么是尾调用？"><a href="#什么是尾调用？" class="headerlink" title="什么是尾调用？"></a><strong>什么是尾调用？</strong></h3><p>尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> g(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面代码中，函数f的最后一步是调用函数g，这就叫尾调用。<br>以下三种情况，都不属于尾调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 情况一</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> y = g(x);</div><div class="line">  <span class="keyword">return</span> y;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 情况二</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> g(x) + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 情况三</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  g(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -108,6 +108,8 @@
       <category term="ES6" scheme="http://shenjoel.github.io/tags/ES6/"/>
     
       <category term="javascript" scheme="http://shenjoel.github.io/tags/javascript/"/>
+    
+      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
@@ -175,9 +177,9 @@
     </summary>
     
     
-      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
-    
       <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
+    
+      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -209,9 +211,9 @@
     </summary>
     
     
-      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
-    
       <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
+    
+      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -246,9 +248,9 @@
     </summary>
     
     
-      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
-    
       <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
+    
+      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
