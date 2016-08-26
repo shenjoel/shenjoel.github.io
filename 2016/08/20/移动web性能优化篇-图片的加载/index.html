@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#22242b">
   
   
-  <meta name="keywords" content="移动WEB,优化,图片">
+  <meta name="keywords" content="优化,移动WEB,图片">
   <meta name="description" content="控制图片加载在移动浏览器打开网页，经常能感觉到明显的卡顿。造成卡顿的原因除了页面 DOM 结构复杂、CSS 过多地触发 Layout/Paint/Composite、存在复杂 JS 逻辑等等，也可能是没有控制图片的加载时机。
 通常浏览器会并发加载 6 个同域名图片，如果做了域名散列，那很可能在打开页面后的短短几秒内，几十个图片都在加载。这些连接带来的 TCP、带宽、CPU、内存等开销，很容易让页面">
 <meta property="og:type" content="article">
@@ -34,7 +34,7 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
+  <nav id="menu"  >
    <div class="inner flex-row-vertical">
   <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
       <i class="icon icon-lg icon-close"></i>

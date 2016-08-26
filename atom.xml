@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://shenjoel.github.io/"/>
-  <updated>2016-08-24T10:59:00.124Z</updated>
+  <updated>2016-08-26T08:29:02.418Z</updated>
   <id>http://shenjoel.github.io/</id>
   
   <author>
@@ -14,6 +14,102 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ES6学习笔记-尾递归优化</title>
+    <link href="http://shenjoel.github.io/2016/08/26/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B0%BE%E9%80%92%E5%BD%92%E4%BC%98%E5%8C%96/"/>
+    <id>http://shenjoel.github.io/2016/08/26/ES6学习笔记-尾递归优化/</id>
+    <published>2016-08-26T08:12:18.000Z</published>
+    <updated>2016-08-26T08:29:02.418Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h3><p>函数调用自身，称为递归。如果<a href="/2016/08/26/ES6学习笔记-尾调用优化/">尾调用</a>自身，就称为<strong>尾递归</strong>。</p>
+<p>递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></div></pre></td></tr></table></figure></p>
+<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。</p>
+<p>如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</div><div class="line">&#125;</div><div class="line">factorial(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></div></pre></td></tr></table></figure></p>
+<p>还有一个比较著名的例子，就是计算fibonacci 数列，也能充分说明尾递归优化的重要性</p>
+<p>如果是非尾递归的fibonacci 递归方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> ( n &lt;= <span class="number">1</span> ) &#123;<span class="keyword">return</span> <span class="number">1</span>&#125;;</div><div class="line">  <span class="keyword">return</span> Fibonacci(n - <span class="number">1</span>) + Fibonacci(n - <span class="number">2</span>);</div><div class="line">&#125;</div><div class="line">Fibonacci(<span class="number">10</span>); <span class="comment">// 89</span></div><div class="line"><span class="comment">// Fibonacci(100)</span></div><div class="line"><span class="comment">// Fibonacci(500)</span></div><div class="line"><span class="comment">// 堆栈溢出了</span></div></pre></td></tr></table></figure></p>
+<p>如果我们使用尾递归优化过的fibonacci 递归算法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fibonacci2</span> (<span class="params">n , ac1 = 1 , ac2 = 1</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>( n &lt;= <span class="number">1</span> ) &#123;<span class="keyword">return</span> ac2&#125;;</div><div class="line">  <span class="keyword">return</span> Fibonacci2 (n - <span class="number">1</span>, ac2, ac1 + ac2);</div><div class="line">&#125;</div><div class="line">Fibonacci2(<span class="number">100</span>) <span class="comment">// 573147844013817200000</span></div><div class="line">Fibonacci2(<span class="number">1000</span>) <span class="comment">// 7.0330367711422765e+208</span></div><div class="line">Fibonacci2(<span class="number">10000</span>) <span class="comment">// Infinity</span></div></pre></td></tr></table></figure>
+<p>由此可见，“尾调用优化”对递归操作意义重大，所以一些函数式编程语言将其写入了语言规格。ES6也是如此，第一次明确规定，所有ECMAScript的实现，都必须部署“尾调用优化”。这就是说，在ES6中，只要使用尾递归，就不会发生栈溢出，相对节省内存。</p>
+<hr>
+<h3 id="递归函数的改写"><a href="#递归函数的改写" class="headerlink" title="递归函数的改写"></a>递归函数的改写</h3><p>尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量 total ，那就把这个中间变量改写成函数的参数。这样做的缺点就是不太直观，第一眼很难看出来，为什么计算5的阶乘，需要传入两个参数5和1？</p>
+<p>两个方法可以解决这个问题。方法一是在尾递归函数之外，再提供一个正常形式的函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> tailFactorial(n, <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></div></pre></td></tr></table></figure></p>
+<p>上面代码通过一个正常形式的阶乘函数 factorial ，调用尾递归函数 tailFactorial ，看起来就正常多了。</p>
+<p>函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn, n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">m</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> fn.call(<span class="keyword">this</span>, m, n);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tailFactorial</span>(<span class="params">n, total</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">  <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * total);</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> factorial = currying(tailFactorial, <span class="number">1</span>);</div><div class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></div></pre></td></tr></table></figure></p>
+<p>上面代码通过柯里化，将尾递归函数 tailFactorial 变为只接受1个参数的 factorial 。</p>
+<p>第二种方法就简单多了，就是采用ES6的函数默认值。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total = 1</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</div><div class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</div><div class="line">&#125;</div><div class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，参数 total 有默认值1，所以调用时不用提供这个值。</p>
+<p>总结一下，递归本质上是一种循环操作。纯粹的函数式编程语言没有循环操作命令，所有的循环都用递归实现，这就是为什么尾递归对这些语言极其重要。对于其他支持“尾调用优化”的语言（比如Lua，ES6），只需要知道循环可以用递归代替，而一旦使用递归，就最好使用尾递归。</p>
+<hr>
+<h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><p>ES6的尾调用优化只在严格模式下开启，正常模式是无效的。</p>
+<p>这是因为在正常模式下，函数内部有两个变量，可以跟踪函数的调用栈。</p>
+<ul>
+<li><strong>func.arguments</strong>：返回调用时函数的参数。</li>
+<li><strong>func.caller</strong>：返回调用当前函数的那个函数。</li>
+</ul>
+<p>尾调用优化发生时，函数的调用栈会改写，因此上面两个变量就会失真。严格模式禁用这两个变量，所以尾调用模式仅在严格模式下生效。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">restricted</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">  "use strict"</span>;</div><div class="line">  restricted.caller;    <span class="comment">// 报错</span></div><div class="line">  restricted.arguments; <span class="comment">// 报错</span></div><div class="line">&#125;</div><div class="line">restricted();</div></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="尾递归优化的实现"><a href="#尾递归优化的实现" class="headerlink" title="尾递归优化的实现"></a>尾递归优化的实现</h3><p>尾递归优化只在严格模式下生效，那么正常模式下，或者那些不支持该功能的环境中，有没有办法也使用尾递归优化呢？回答是可以的，就是自己实现尾递归优化。</p>
+<p>它的原理非常简单。尾递归之所以需要优化，原因是调用栈太多，造成溢出，那么只要减少调用栈，就不会溢出。怎么做可以减少调用栈呢？就是采用“循环”换掉“递归”。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> sum(x + <span class="number">1</span>, y - <span class="number">1</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">sum(<span class="number">1</span>, <span class="number">100000</span>)</div><div class="line"><span class="comment">// Uncaught RangeError: Maximum call stack size exceeded(…)</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，sum是一个递归函数，参数x是需要累加的值，参数y控制递归次数。一旦指定sum递归100000次，就会报错，提示超出调用栈的最大次数。</p>
+<p>蹦床函数（trampoline）可以将递归执行转为循环执行。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">trampoline</span>(<span class="params">f</span>) </span>&#123;</div><div class="line">  <span class="keyword">while</span> (f &amp;&amp; f <span class="keyword">instanceof</span> <span class="built_in">Function</span>) &#123;</div><div class="line">    f = f();</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> f;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面就是蹦床函数的一个实现，它接受一个函数f作为参数。只要f执行后返回一个函数，就继续执行。注意，这里是返回一个函数，然后执行该函数，而不是函数里面调用函数，这样就避免了递归执行，从而就消除了调用栈过大的问题。</p>
+<p>然后，要做的就是将原来的递归函数，改写为每一步返回另一个函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> sum.bind(<span class="literal">null</span>, x + <span class="number">1</span>, y - <span class="number">1</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> x;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码中，<strong>sum</strong>函数的每次执行，都会返回自身的另一个版本。</p>
+<p>现在，使用蹦床函数执行<strong>sum</strong>，就不会发生调用栈溢出。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">trampoline(sum(<span class="number">1</span>, <span class="number">100000</span>))</div><div class="line"><span class="comment">// 100001</span></div></pre></td></tr></table></figure></p>
+<p>蹦床函数并不是真正的尾递归优化，下面的实现才是。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tco</span>(<span class="params">f</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> value;</div><div class="line">  <span class="keyword">var</span> active = <span class="literal">false</span>;</div><div class="line">  <span class="keyword">var</span> accumulated = [];</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">accumulator</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    accumulated.push(<span class="built_in">arguments</span>);</div><div class="line">    <span class="keyword">if</span> (!active) &#123;</div><div class="line">      active = <span class="literal">true</span>;</div><div class="line">      <span class="keyword">while</span> (accumulated.length) &#123;</div><div class="line">        value = f.apply(<span class="keyword">this</span>, accumulated.shift());</div><div class="line">      &#125;</div><div class="line">      active = <span class="literal">false</span>;</div><div class="line">      <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> sum = tco(<span class="function"><span class="keyword">function</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (y &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> sum(x + <span class="number">1</span>, y - <span class="number">1</span>)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> x</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">sum(<span class="number">1</span>, <span class="number">100000</span>)</div><div class="line"><span class="comment">// 100001</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，<strong>tco</strong>函数是尾递归优化的实现，它的奥妙就在于状态变量<strong>active</strong>。默认情况下，这个变量是不激活的。一旦进入尾递归优化的过程，这个变量就激活了。然后，每一轮递归<strong>sum</strong>返回的都是<strong>undefined</strong>，所以就避免了递归执行；而<strong>accumulated</strong>数组存放每一轮<strong>sum</strong>执行的参数，总是有值的，这就保证了<strong>accumulator</strong>函数内部的<strong>while</strong>循环总是会执行。这样就很巧妙地将“递归”改成了“循环”，而后一轮的参数会取代前一轮的参数，保证了调用栈只有一层。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;尾递归&quot;&gt;&lt;a href=&quot;#尾递归&quot; class=&quot;headerlink&quot; title=&quot;尾递归&quot;&gt;&lt;/a&gt;尾递归&lt;/h3&gt;&lt;p&gt;函数调用自身，称为递归。如果&lt;a href=&quot;/2016/08/26/ES6学习笔记-尾调用优化/&quot;&gt;尾调用&lt;/a&gt;自身，就称为&lt;s
+    
+    </summary>
+    
+    
+      <category term="ES6" scheme="http://shenjoel.github.io/tags/ES6/"/>
+    
+      <category term="javascript" scheme="http://shenjoel.github.io/tags/javascript/"/>
+    
+      <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ES6学习笔记-尾调用优化</title>
+    <link href="http://shenjoel.github.io/2016/08/26/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96/"/>
+    <id>http://shenjoel.github.io/2016/08/26/ES6学习笔记-尾调用优化/</id>
+    <published>2016-08-26T07:24:56.000Z</published>
+    <updated>2016-08-26T08:12:48.030Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是尾调用？"><a href="#什么是尾调用？" class="headerlink" title="什么是尾调用？"></a><strong>什么是尾调用？</strong></h3><p>尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> g(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码中，函数f的最后一步是调用函数g，这就叫尾调用。<br>以下三种情况，都不属于尾调用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 情况一</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> y = g(x);</div><div class="line">  <span class="keyword">return</span> y;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 情况二</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> g(x) + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 情况三</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  g(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码中，情况一是调用函数g之后，还有赋值操作，所以不属于尾调用，即使语义完全一样。情况二也属于调用后还有操作，即使写在一行内。情况三等同于下面的代码。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  g(x);</div><div class="line">  <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>尾调用不一定出现在函数尾部，只要是最后一步操作即可。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> m(x)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> n(x);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码中，函数m和n都属于尾调用，因为它们都是函数f的最后一步操作。</p>
+<hr>
+<h3 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a><strong>尾调用优化</strong></h3><p>尾调用之所以与其他调用不同，就在于它的特殊的调用位置。</p>
+<p>我们知道，函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。</p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> m = <span class="number">1</span>;</div><div class="line">  <span class="keyword">let</span> n = <span class="number">2</span>;</div><div class="line">  <span class="keyword">return</span> g(m + n);</div><div class="line">&#125;</div><div class="line">f();</div><div class="line"><span class="comment">// 等同于</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> g(<span class="number">3</span>);</div><div class="line">&#125;</div><div class="line">f();</div><div class="line"><span class="comment">// 等同于</span></div><div class="line">g(<span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码中，如果函数g不是尾调用，函数f就需要保存内部变量m和n的值、g的调用位置等信息。但由于调用g之后，函数f就结束了，所以执行到最后一步，完全可以删除 f(x) 的调用帧，只保留 g(3) 的调用帧。</p>
+<p>这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。</p>
+<p>注意，只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addOne</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> one = <span class="number">1</span>;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params">b</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> b + one;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> inner(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面的函数不会进行尾调用优化，因为内层函数inner用到了外层函数addOne的内部变量one。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是尾调用？&quot;&gt;&lt;a href=&quot;#什么是尾调用？&quot; class=&quot;headerlink&quot; title=&quot;什么是尾调用？&quot;&gt;&lt;/a&gt;&lt;strong&gt;什么是尾调用？&lt;/strong&gt;&lt;/h3&gt;&lt;p&gt;尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简
+    
+    </summary>
+    
+    
+      <category term="ES6" scheme="http://shenjoel.github.io/tags/ES6/"/>
+    
+      <category term="javascript" scheme="http://shenjoel.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>ES6学习笔记-数组的空位</title>
@@ -79,9 +175,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -113,9 +209,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -150,9 +246,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
