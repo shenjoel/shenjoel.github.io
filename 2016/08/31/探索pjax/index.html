@@ -3,29 +3,44 @@
 <head>
   <meta charset="utf-8">
   
-  <title>移动web性能优化篇-图片的大小 | Joel&#39;s blog | Nice to meet you</title>
+  <title>探索pjax | Joel&#39;s blog | Nice to meet you</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#22242b">
   
   
-  <meta name="keywords" content="优化,移动WEB,图片">
-  <meta name="description" content="控制图片大小图片高宽越大，意味着需要越多的网络开销。常见图片格式都经过了高度压缩，尺寸越大的图片还意味着浏览器在解码过程中需要耗费更多 CPU，解码之后的位图需要占用更多内存。在移动端，我们更应该关注图片大小。
+  <meta name="keywords" content="pjax">
+  <meta name="description" content="什么是pjax?
+它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新。 
+它彻底改变标准网站的用户体验，多页面的呈现，单页面的操作
 
- 根据 DPR（window.devicePixelRatio，设备像素比）选择合适的图片尺寸。 现在的手机基本上都是高清屏，如果一味追求让图片更小而使用单倍图也不现实。这一点上，最佳实">
+为什么要用pjax？web研发模式演变的两种状态：
+
+以后端为主的MVC开发模式– 前后端耦合程度高，后端控制MV层，沟通成本大，但利于SEO
+Ajax为主的SPA型开发模式– SPA - Single Page Applicati">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动web性能优化篇-图片的大小">
-<meta property="og:url" content="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的大小/index.html">
+<meta property="og:title" content="探索pjax">
+<meta property="og:url" content="http://shenjoel.github.io/2016/08/31/探索pjax/index.html">
 <meta property="og:site_name" content="Joel's blog">
-<meta property="og:description" content="控制图片大小图片高宽越大，意味着需要越多的网络开销。常见图片格式都经过了高度压缩，尺寸越大的图片还意味着浏览器在解码过程中需要耗费更多 CPU，解码之后的位图需要占用更多内存。在移动端，我们更应该关注图片大小。
+<meta property="og:description" content="什么是pjax?
+它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新。 
+它彻底改变标准网站的用户体验，多页面的呈现，单页面的操作
 
- 根据 DPR（window.devicePixelRatio，设备像素比）选择合适的图片尺寸。 现在的手机基本上都是高清屏，如果一味追求让图片更小而使用单倍图也不现实。这一点上，最佳实">
-<meta property="og:updated_time" content="2016-08-20T09:52:12.028Z">
+为什么要用pjax？web研发模式演变的两种状态：
+
+以后端为主的MVC开发模式– 前后端耦合程度高，后端控制MV层，沟通成本大，但利于SEO
+Ajax为主的SPA型开发模式– SPA - Single Page Applicati">
+<meta property="og:updated_time" content="2016-09-01T10:13:56.992Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="移动web性能优化篇-图片的大小">
-<meta name="twitter:description" content="控制图片大小图片高宽越大，意味着需要越多的网络开销。常见图片格式都经过了高度压缩，尺寸越大的图片还意味着浏览器在解码过程中需要耗费更多 CPU，解码之后的位图需要占用更多内存。在移动端，我们更应该关注图片大小。
+<meta name="twitter:title" content="探索pjax">
+<meta name="twitter:description" content="什么是pjax?
+它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新。 
+它彻底改变标准网站的用户体验，多页面的呈现，单页面的操作
 
- 根据 DPR（window.devicePixelRatio，设备像素比）选择合适的图片尺寸。 现在的手机基本上都是高清屏，如果一味追求让图片更小而使用单倍图也不现实。这一点上，最佳实">
+为什么要用pjax？web研发模式演变的两种状态：
+
+以后端为主的MVC开发模式– 前后端耦合程度高，后端控制MV层，沟通成本大，但利于SEO
+Ajax为主的SPA型开发模式– SPA - Single Page Applicati">
   
     <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
   
@@ -121,7 +136,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">移动web性能优化篇-图片的大小</div>
+        <div class="flex-col header-title ellipsis">探索pjax</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -142,11 +157,11 @@
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">移动web性能优化篇-图片的大小</h1>
+    <h1 class="author">探索pjax</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-20T09:40:50.000Z" itemprop="datePublished" class="page-time">
-  2016-08-20
+            <time datetime="2016-08-31T10:23:18.000Z" itemprop="datePublished" class="page-time">
+  2016-08-31
 </time>
 
 
@@ -156,11 +171,11 @@
 </header>
 
     <div class="container body-wrap">
-      <article id="post-移动web性能优化篇-图片的大小" 
+      <article id="post-探索pjax" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片/">图片</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动WEB/">移动WEB</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pjax/">pjax</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -207,7 +222,7 @@
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#控制图片大小"><span class="post-toc-text">控制图片大小</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是pjax"><span class="post-toc-text">什么是pjax?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么要用pjax？"><span class="post-toc-text">为什么要用pjax？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#pjax的原理"><span class="post-toc-text">pjax的原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTML5-History-API"><span class="post-toc-text">HTML5 History API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不支持HTML5-PushState的浏览器怎么办？"><span class="post-toc-text">不支持HTML5 PushState的浏览器怎么办？</span></a></li></ol>
             </nav>
             
         </aside>
@@ -215,21 +230,43 @@
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="控制图片大小"><a href="#控制图片大小" class="headerlink" title="控制图片大小"></a>控制图片大小</h3><p>图片高宽越大，意味着需要越多的网络开销。常见图片格式都经过了高度压缩，尺寸越大的图片还意味着浏览器在解码过程中需要耗费更多 CPU，解码之后的位图需要占用更多内存。在移动端，我们更应该关注图片大小。</p>
-<ul>
-<li><strong> 根据 DPR（window.devicePixelRatio，设备像素比）选择合适的图片尺寸。 </strong>现在的手机基本上都是高清屏，如果一味追求让图片更小而使用单倍图也不现实。这一点上，最佳实践是根据产品特性，结合用户 DPR 分布情况来选择合适的尺寸。例如在我们某个产品中：图片加载速度比图片质量更重要；用户 DPR 分布前三是：2、3、1.5。我们最终使用了 1.5 倍图，并且在图床缩放图片时，加了一点点锐化效果。最终图片体积很小，质量也尚可接受。</li>
-<li><strong> 处理好响应式图片（Responsive Image）。 </strong>移动上很多图片宽度不是固定像素值，例如通栏 Banner 图片的宽度是跟着设备走的。对于这种场景，使用 JS 获取设备宽度，拼出最适合当前设备的图片尺寸，交给图床进行缩放，无疑能在图片体积和质量上找到最佳平衡点。但这种做法并不可取，移动设备宽度各式各样，如果裁图规格太多，容易降低 CDN 缓存命中率。图床实时处理完图片再分发到 CDN 更耗时，在移动端让图片命中 CDN 缓存也很重要。处理响应式图片的最佳实践是根据用户屏幕尺寸分布，制定出几档裁图规则，页面根据用户设备宽度使用最合适的档位，并对重要的图片（例如头部焦点图）提前预热 CDN。</li>
-<li><strong> 使用 WEBP 格式。 </strong>有一种减少图片体积的灵丹妙药 —— 使用压缩比例更高的 WEBP 格式。《<a href="http://blog.ibireme.com/2015/11/02/mobile_image_benchmark/" target="_blank" rel="external">移动端图片格式调研</a>》这篇文章详细地对比了各种移动端图片格式及各自适用场景。对于 WEBP 的最佳实践是只要浏览器支持就用，虽然 WEBP 解码慢于 JPG，但在同等图片质量下，WEBP 体积通常比 JPG 小很多。</li>
+            <h3 id="什么是pjax"><a href="#什么是pjax" class="headerlink" title="什么是pjax?"></a>什么是pjax?</h3><ul>
+<li>它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新。 </li>
+<li>它彻底改变标准网站的用户体验，多页面的呈现，单页面的操作</li>
 </ul>
-<p>要判断浏览器是否支持 WEBP，可以检查 HTTP 请求头部字段 <code>Accept</code> 的值是否包含 webp。例如这是 Chrome 给图片请求加的 <code>Accept</code>：</p>
-<blockquote>
-<p>Accept: image/webp,image/<em>,</em>/*;q=0.8</p>
-</blockquote>
+<h3 id="为什么要用pjax？"><a href="#为什么要用pjax？" class="headerlink" title="为什么要用pjax？"></a>为什么要用pjax？</h3><p>web研发模式演变的两种状态：</p>
+<ul>
+<li>以后端为主的MVC开发模式<br>– 前后端耦合程度高，后端控制MV层，沟通成本大，但利于SEO</li>
+<li>Ajax为主的SPA型开发模式<br>– SPA - Single Page Application 指单页面应用，通过带”#”的链接，获取其hash值在同一个页面更新不同的场景，达到浏览器级别的前进与后退；而这种开发模式，前后端是通过ajax交换数据，所以爬虫爬下来的页面都是空白，虽然拥有良好的用户体验，但不利于SEO</li>
+</ul>
+<p>有没有那么一种解决方案，即能做SEO，又能得到像SPA一样的用户体验呢？</p>
+<p>是的，pjax是一个优秀的解决方案，你有足够多的理由来使用它：</p>
+<ul>
+<li>可以在页面切换间平滑过渡，增加Loading动画。</li>
+<li>可以在各个页面间传递数据，不依赖URL。</li>
+<li>可以选择性的保留状态，如音乐网站，切换页面时不会停止播放歌曲。</li>
+<li>所有的标签都可以用来跳转，不仅仅是a标签。</li>
+<li>避免了公共JS的反复执行，如无需在各个页面打开时都判断是否登录过等等。</li>
+<li>减少了请求体积，节省流量，加快页面响应速度。</li>
+<li>平滑降级到低版本浏览器上，对SEO也不会有影响。</li>
+</ul>
+<h3 id="pjax的原理"><a href="#pjax的原理" class="headerlink" title="pjax的原理"></a>pjax的原理</h3><p>第一步：拦截a标签的默认跳转动作。<br>第二步：使用Ajax请求新页面。<br>第三步：将返回的Html替换到页面中。<br>第四步：使用HTML5的History API或者Url的Hash修改Url。</p>
+<h3 id="HTML5-History-API"><a href="#HTML5-History-API" class="headerlink" title="HTML5 History API"></a>HTML5 History API</h3><p><strong>history.pushState(state, title, url)</strong><br>pushState方法会将当前的url添加到历史记录中，然后修改当前url为新url。请注意，这个方法只会修改地址栏的Url显示，但并不会发出任何请求。我们正是基于此特性来实现Pjax。它有3个参数：</p>
+<ul>
+<li>state: 用以存储关于你所要插入到历史记录的条目的相关信息。</li>
+<li>title: 顾名思义，就是document.title。不过这个参数目前并无作用，浏览器目前会选择忽略它。</li>
+<li>url: 新url，也就是你要显示在地址栏上的url。</li>
+</ul>
+<p><strong>history.replaceState(state, title, url)</strong><br>replaceState方法与pushState大同小异，区别只在于pushState会将当前url添加到历史记录，之后再修改url，而replaceState只是修改url，不添加历史记录。</p>
+<p><strong>window.onpopstate 事件</strong><br>一般来说，每当url变动时，popstate事件都会被触发。但若是调用pushState来修改url，该事件则不会触发，因此，我们可以把它用作浏览器的前进后退事件。该事件有一个参数，就是上文pushState方法的第一个参数state。</p>
+<h3 id="不支持HTML5-PushState的浏览器怎么办？"><a href="#不支持HTML5-PushState的浏览器怎么办？" class="headerlink" title="不支持HTML5 PushState的浏览器怎么办？"></a>不支持HTML5 PushState的浏览器怎么办？</h3><p>IE6到IE9是不支持pushState的，要修改Url，只能利用Url的Hash，也即是#号。</p>
+<p>你可以随意找个网站试一下，在url后面加上#号和任意内容，页面并不会刷新。此时点击后退也只会回到上一条#号，同样不会刷新。</p>
+<p>那么我们只需把pushState(新url)换成location.hash = 新url，把onpopstate事件换成onhashchange事件就可以兼容IE了。<br>QQ音乐，网易云音乐等就是使用这种方式。</p>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的大小/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的大小/</a>
+                <a href="http://shenjoel.github.io/2016/08/31/探索pjax/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/31/探索pjax/</a>
                 </p>
                 <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
             </blockquote>
@@ -237,19 +274,12 @@
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/20/移动web性能优化篇-图片的加载/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">移动web性能优化篇-图片的加载</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/20/移动web性能优化篇-图片的影响/" id="post-next" class="post-nav-link">
+      <a href="/2016/08/26/ES6学习笔记-尾递归优化/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">移动web性能优化篇-图片的影响</h4>
+        <h4 class="title">ES6学习笔记-尾递归优化</h4>
       </a>
     </div>
   
@@ -260,7 +290,7 @@
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="移动web性能优化篇-图片的大小" data-title="移动web性能优化篇-图片的大小" data-url="http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的大小/index.html"></div>
+	<div class="ds-thread" data-thread-key="探索pjax" data-title="探索pjax" data-url="http://shenjoel.github.io/2016/08/31/探索pjax/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -291,10 +321,10 @@
 
 <script>
 var BLOG_SHARE = {
-    title: "移动web性能优化篇-图片的大小",
+    title: "探索pjax",
     pic: "/img/brand.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://shenjoel.github.io/2016/08/20/移动web性能优化篇-图片的大小/index.html"
+    url: "http://shenjoel.github.io/2016/08/31/探索pjax/index.html"
 };
 </script>
 <div class="global-share" id="global-share">

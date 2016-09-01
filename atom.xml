@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://shenjoel.github.io/"/>
-  <updated>2016-08-26T08:29:02.418Z</updated>
+  <updated>2016-09-01T10:13:56.992Z</updated>
   <id>http://shenjoel.github.io/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>探索pjax</title>
+    <link href="http://shenjoel.github.io/2016/08/31/%E6%8E%A2%E7%B4%A2pjax/"/>
+    <id>http://shenjoel.github.io/2016/08/31/探索pjax/</id>
+    <published>2016-08-31T10:23:18.000Z</published>
+    <updated>2016-09-01T10:13:56.992Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是pjax"><a href="#什么是pjax" class="headerlink" title="什么是pjax?"></a>什么是pjax?</h3><ul>
+<li>它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新。 </li>
+<li>它彻底改变标准网站的用户体验，多页面的呈现，单页面的操作</li>
+</ul>
+<h3 id="为什么要用pjax？"><a href="#为什么要用pjax？" class="headerlink" title="为什么要用pjax？"></a>为什么要用pjax？</h3><p>web研发模式演变的两种状态：</p>
+<ul>
+<li>以后端为主的MVC开发模式<br>– 前后端耦合程度高，后端控制MV层，沟通成本大，但利于SEO</li>
+<li>Ajax为主的SPA型开发模式<br>– SPA - Single Page Application 指单页面应用，通过带”#”的链接，获取其hash值在同一个页面更新不同的场景，达到浏览器级别的前进与后退；而这种开发模式，前后端是通过ajax交换数据，所以爬虫爬下来的页面都是空白，虽然拥有良好的用户体验，但不利于SEO</li>
+</ul>
+<p>有没有那么一种解决方案，即能做SEO，又能得到像SPA一样的用户体验呢？</p>
+<p>是的，pjax是一个优秀的解决方案，你有足够多的理由来使用它：</p>
+<ul>
+<li>可以在页面切换间平滑过渡，增加Loading动画。</li>
+<li>可以在各个页面间传递数据，不依赖URL。</li>
+<li>可以选择性的保留状态，如音乐网站，切换页面时不会停止播放歌曲。</li>
+<li>所有的标签都可以用来跳转，不仅仅是a标签。</li>
+<li>避免了公共JS的反复执行，如无需在各个页面打开时都判断是否登录过等等。</li>
+<li>减少了请求体积，节省流量，加快页面响应速度。</li>
+<li>平滑降级到低版本浏览器上，对SEO也不会有影响。</li>
+</ul>
+<h3 id="pjax的原理"><a href="#pjax的原理" class="headerlink" title="pjax的原理"></a>pjax的原理</h3><p>第一步：拦截a标签的默认跳转动作。<br>第二步：使用Ajax请求新页面。<br>第三步：将返回的Html替换到页面中。<br>第四步：使用HTML5的History API或者Url的Hash修改Url。</p>
+<h3 id="HTML5-History-API"><a href="#HTML5-History-API" class="headerlink" title="HTML5 History API"></a>HTML5 History API</h3><p><strong>history.pushState(state, title, url)</strong><br>pushState方法会将当前的url添加到历史记录中，然后修改当前url为新url。请注意，这个方法只会修改地址栏的Url显示，但并不会发出任何请求。我们正是基于此特性来实现Pjax。它有3个参数：</p>
+<ul>
+<li>state: 用以存储关于你所要插入到历史记录的条目的相关信息。</li>
+<li>title: 顾名思义，就是document.title。不过这个参数目前并无作用，浏览器目前会选择忽略它。</li>
+<li>url: 新url，也就是你要显示在地址栏上的url。</li>
+</ul>
+<p><strong>history.replaceState(state, title, url)</strong><br>replaceState方法与pushState大同小异，区别只在于pushState会将当前url添加到历史记录，之后再修改url，而replaceState只是修改url，不添加历史记录。</p>
+<p><strong>window.onpopstate 事件</strong><br>一般来说，每当url变动时，popstate事件都会被触发。但若是调用pushState来修改url，该事件则不会触发，因此，我们可以把它用作浏览器的前进后退事件。该事件有一个参数，就是上文pushState方法的第一个参数state。</p>
+<h3 id="不支持HTML5-PushState的浏览器怎么办？"><a href="#不支持HTML5-PushState的浏览器怎么办？" class="headerlink" title="不支持HTML5 PushState的浏览器怎么办？"></a>不支持HTML5 PushState的浏览器怎么办？</h3><p>IE6到IE9是不支持pushState的，要修改Url，只能利用Url的Hash，也即是#号。</p>
+<p>你可以随意找个网站试一下，在url后面加上#号和任意内容，页面并不会刷新。此时点击后退也只会回到上一条#号，同样不会刷新。</p>
+<p>那么我们只需把pushState(新url)换成location.hash = 新url，把onpopstate事件换成onhashchange事件就可以兼容IE了。<br>QQ音乐，网易云音乐等就是使用这种方式。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是pjax&quot;&gt;&lt;a href=&quot;#什么是pjax&quot; class=&quot;headerlink&quot; title=&quot;什么是pjax?&quot;&gt;&lt;/a&gt;什么是pjax?&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;它是一种浏览方式，当你点击一个站内的链接的时候， 不是做页面跳转， 而是站内页面刷新
+    
+    </summary>
+    
+    
+      <category term="pjax" scheme="http://shenjoel.github.io/tags/pjax/"/>
+    
+  </entry>
   
   <entry>
     <title>ES6学习笔记-尾递归优化</title>
@@ -177,9 +230,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -211,9 +264,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
@@ -248,9 +301,9 @@
     </summary>
     
     
-      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
-    
       <category term="优化" scheme="http://shenjoel.github.io/tags/%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="移动WEB" scheme="http://shenjoel.github.io/tags/%E7%A7%BB%E5%8A%A8WEB/"/>
     
       <category term="图片" scheme="http://shenjoel.github.io/tags/%E5%9B%BE%E7%89%87/"/>
     
