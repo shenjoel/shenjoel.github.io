@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://shenjoel.github.io/"/>
-  <updated>2016-09-01T10:13:56.992Z</updated>
+  <updated>2016-09-20T03:36:13.392Z</updated>
   <id>http://shenjoel.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Error: DEPTH_ZERO_SELF_SIGNED_CERT</title>
+    <link href="http://shenjoel.github.io/2016/09/20/Error-DEPTH-ZERO-SELF-SIGNED-CERT/"/>
+    <id>http://shenjoel.github.io/2016/09/20/Error-DEPTH-ZERO-SELF-SIGNED-CERT/</id>
+    <published>2016-09-20T03:16:31.000Z</published>
+    <updated>2016-09-20T03:36:13.392Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="在实现第三方系统对接时，提示了一个错误："><a href="#在实现第三方系统对接时，提示了一个错误：" class="headerlink" title="在实现第三方系统对接时，提示了一个错误："></a>在实现第三方系统对接时，提示了一个错误：</h4><pre><code>Error: DEPTH_ZERO_SELF_SIGNED_CERT
+</code></pre><h4 id="而在开发过程中跳过这一问题的方法是添加下面这句："><a href="#而在开发过程中跳过这一问题的方法是添加下面这句：" class="headerlink" title="而在开发过程中跳过这一问题的方法是添加下面这句："></a>而在开发过程中跳过这一问题的方法是添加下面这句：</h4><pre><code>process.env.NODE_TLS_REJECT_UNAUTHORIZED = &quot;0&quot;;
+</code></pre><h4 id="下文是一个中肯的解释："><a href="#下文是一个中肯的解释：" class="headerlink" title="下文是一个中肯的解释："></a>下文是一个中肯的解释：</h4><p>Node is complaining because the TLS (SSL) certificate it’s been given is self-signed (i.e. it has no parent - a depth of 0). It expects to find a certificate signed by another certificate that is installed in your OS as a trusted root.</p>
+<p>Your “fix” is to disable Node from rejecting self-signed certificates by allowing ANY unauthorised certificate.</p>
+<p>Your fix is insecure and shouldn’t really be done at all, but is often done in development (it should never be done in production).</p>
+<p>The proper solution should be to put the self-signed certificate in your trusted root store OR to get a proper certificate signed by an existing Certificate Authority (which is already trusted by your server).</p>
+<h4 id="大概意思是："><a href="#大概意思是：" class="headerlink" title="大概意思是："></a>大概意思是：</h4><p>Node被赋予了TLS（SSL）证书是自签名的，它希望找到由安装在您的操作系统作为一个受信任的根证书，另一个签名的证书。</p>
+<p>你的“修复”是允许任何未经授权的证书，取消其拒绝自签名证书节点。这里指 <strong>process.env.NODE_TLS_REJECT_UNAUTHORIZED = “0”;</strong></p>
+<p>你的解决方法是不安全的，应该不是真的都做到，但往往是在做开发（它不应该在生产中进行）。</p>
+<p>正确的解决办法应该是把自签名证书在受信任的根存储或度日（这已经是你的服务器信任）现有的证书颁发机构签署一个适当的证书。</p>
+<hr>
+<p>此文章以记录自己还在坑里努力往上爬</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;在实现第三方系统对接时，提示了一个错误：&quot;&gt;&lt;a href=&quot;#在实现第三方系统对接时，提示了一个错误：&quot; class=&quot;headerlink&quot; title=&quot;在实现第三方系统对接时，提示了一个错误：&quot;&gt;&lt;/a&gt;在实现第三方系统对接时，提示了一个错误：&lt;/h4&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="node" scheme="http://shenjoel.github.io/tags/node/"/>
+    
+  </entry>
   
   <entry>
     <title>探索pjax</title>
@@ -310,6 +342,33 @@
   </entry>
   
   <entry>
+    <title>在hexo中加入多说评论模块</title>
+    <link href="http://shenjoel.github.io/2016/08/19/%E5%9C%A8hexo%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA/"/>
+    <id>http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/</id>
+    <published>2016-08-19T07:51:58.000Z</published>
+    <updated>2016-08-24T10:31:08.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(<a href="http://shenjoel.github.io/)。">http://shenjoel.github.io/)。</a><br>如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">	 &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; page.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;!-- 多说评论框 start --&gt;</div><div class="line">	&lt;div id=<span class="string">"ds-thread"</span> class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= page.path %&gt;"</span> data-title=<span class="string">"&lt;%= page.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">		var duoshuoQuery = &#123;short_name:<span class="string">"datoublog"</span>&#125;;</div><div class="line">		(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">		ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">		ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">		ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">		(document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">		 || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(&lt;a href=&quot;http://shenjoel.github.io/)。&quot;&gt;http://shenjoel.
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
+    
+      <category term="多说" scheme="http://shenjoel.github.io/tags/%E5%A4%9A%E8%AF%B4/"/>
+    
+      <category term="评论" scheme="http://shenjoel.github.io/tags/%E8%AF%84%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="http://shenjoel.github.io/2016/08/19/hello-world/"/>
     <id>http://shenjoel.github.io/2016/08/19/hello-world/</id>
@@ -335,33 +394,6 @@
     
     
       <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在hexo中加入多说评论模块</title>
-    <link href="http://shenjoel.github.io/2016/08/19/%E5%9C%A8hexo%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA/"/>
-    <id>http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/</id>
-    <published>2016-08-19T07:51:58.000Z</published>
-    <updated>2016-08-24T10:31:08.477Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(<a href="http://shenjoel.github.io/)。">http://shenjoel.github.io/)。</a><br>如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">	 &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; page.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;!-- 多说评论框 start --&gt;</div><div class="line">	&lt;div id=<span class="string">"ds-thread"</span> class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= page.path %&gt;"</span> data-title=<span class="string">"&lt;%= page.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">		var duoshuoQuery = &#123;short_name:<span class="string">"datoublog"</span>&#125;;</div><div class="line">		(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">		ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">		ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">		ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">		(document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">		 || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(&lt;a href=&quot;http://shenjoel.github.io/)。&quot;&gt;http://shenjoel.
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
-    
-      <category term="多说" scheme="http://shenjoel.github.io/tags/%E5%A4%9A%E8%AF%B4/"/>
-    
-      <category term="评论" scheme="http://shenjoel.github.io/tags/%E8%AF%84%E8%AE%BA/"/>
     
   </entry>
   
