@@ -3,26 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Joel&#39;s blog | Nice to meet you</title>
+  <title>总结使用node对接OAuth2的一些经验 | Joel&#39;s blog | Nice to meet you</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#22242b">
   
   
-  <meta name="keywords" content="hexo">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="keywords" content="node,OAuth2">
+  <meta name="description" content="1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误request模块中，rejectUnauthorized参数可设置忽略验证，开发调试方便，但生产环境下不可使用，正确方式是带上agentOptions: {ca: “xxx.pem”, …}参考stackoverflow
+2、发掘了两个不错的模块
+memory-cache– A simple in-memo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://shenjoel.github.io/2016/08/19/hello-world/index.html">
+<meta property="og:title" content="总结使用node对接OAuth2的一些经验">
+<meta property="og:url" content="http://shenjoel.github.io/2016/10/08/总结使用node对接OAuth2的一些经验/index.html">
 <meta property="og:site_name" content="Joel's blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-08-20T06:31:35.279Z">
+<meta property="og:description" content="1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误request模块中，rejectUnauthorized参数可设置忽略验证，开发调试方便，但生产环境下不可使用，正确方式是带上agentOptions: {ca: “xxx.pem”, …}参考stackoverflow
+2、发掘了两个不错的模块
+memory-cache– A simple in-memo">
+<meta property="og:updated_time" content="2016-10-08T09:20:12.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="总结使用node对接OAuth2的一些经验">
+<meta name="twitter:description" content="1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误request模块中，rejectUnauthorized参数可设置忽略验证，开发调试方便，但生产环境下不可使用，正确方式是带上agentOptions: {ca: “xxx.pem”, …}参考stackoverflow
+2、发掘了两个不错的模块
+memory-cache– A simple in-memo">
   
     <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
   
@@ -118,7 +121,7 @@ Quick">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Hello World</div>
+        <div class="flex-col header-title ellipsis">总结使用node对接OAuth2的一些经验</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -139,11 +142,11 @@ Quick">
 </header>
 <header class="content-header">
   <div class="container">
-    <h1 class="author">Hello World</h1>
+    <h1 class="author">总结使用node对接OAuth2的一些经验</h1>
     <h5 class="subtitle">
         
-            <time datetime="2016-08-19T07:51:58.000Z" itemprop="datePublished" class="page-time">
-  2016-08-19
+            <time datetime="2016-10-08T08:52:06.000Z" itemprop="datePublished" class="page-time">
+  2016-10-08
 </time>
 
 
@@ -153,11 +156,11 @@ Quick">
 </header>
 
     <div class="container body-wrap">
-      <article id="post-hello-world" 
+      <article id="post-总结使用node对接OAuth2的一些经验" 
   class="article article-type-post" itemprop="blogPost">
     <div class="post-meta flex-row">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OAuth2/">OAuth2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
 
     </div>
     <div class="post-body">
@@ -204,7 +207,7 @@ Quick">
 
             
             <nav class="post-toc-wrap" id="post-toc">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1、在服务器端的客户端证书验证，DEPTH-ZERO-SELF-SIGNED-CERT错误"><span class="post-toc-text">1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2、发掘了两个不错的模块"><span class="post-toc-text">2、发掘了两个不错的模块</span></a></li></ol>
             </nav>
             
         </aside>
@@ -212,20 +215,16 @@ Quick">
         <div class="post-main">
 
             <div class="post-content" id="post-content" itemprop="postContent">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code>$ hexo new &quot;My New Post&quot;
-</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code>$ hexo server
-</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code>$ hexo generate
-</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code>$ hexo deploy
-</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <h3 id="1、在服务器端的客户端证书验证，DEPTH-ZERO-SELF-SIGNED-CERT错误"><a href="#1、在服务器端的客户端证书验证，DEPTH-ZERO-SELF-SIGNED-CERT错误" class="headerlink" title="1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误"></a>1、在服务器端的客户端证书验证，DEPTH_ZERO_SELF_SIGNED_CERT错误</h3><p>request模块中，rejectUnauthorized参数可设置忽略验证，开发调试方便，但生产环境下不可使用，正确方式是带上agentOptions: {ca: “xxx.pem”, …}<br>参考<a href="http://stackoverflow.com/questions/23601989/client-certificate-validation-on-server-side-depth-zero-self-signed-cert-error" target="_blank" rel="external">stackoverflow</a></p>
+<h3 id="2、发掘了两个不错的模块"><a href="#2、发掘了两个不错的模块" class="headerlink" title="2、发掘了两个不错的模块"></a>2、发掘了两个不错的模块</h3><ul>
+<li><a href="https://github.com/ptarjan/node-cache" target="_blank" rel="external">memory-cache</a><br>– A simple in-memory cache. put(), get() and del()<br>– 简单好用</li>
+<li><a href="https://github.com/dylang/shortid" target="_blank" rel="external">shortid</a><br>– ShortId creates amazingly short non-sequential url-friendly unique ids. Perfect for url shorteners, MongoDB and Redis ids, and any other id users might see.<br>– 功能强大</li>
+</ul>
 
             <blockquote>
                 <p>
                 本文地址：
-                <a href="http://shenjoel.github.io/2016/08/19/hello-world/" target="_blank" rel="external">http://shenjoel.github.io/2016/08/19/hello-world/</a>
+                <a href="http://shenjoel.github.io/2016/10/08/总结使用node对接OAuth2的一些经验/" target="_blank" rel="external">http://shenjoel.github.io/2016/10/08/总结使用node对接OAuth2的一些经验/</a>
                 </p>
                 <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
             </blockquote>
@@ -233,19 +232,12 @@ Quick">
             
 <nav class="post-nav">
   
-    <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/20/移动web性能优化篇-图片的影响/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">移动web性能优化篇-图片的影响</h4>
-      </a>
-    </div>
-  
 
   
     <div class="waves-block waves-effect next fr">
-      <a href="/2016/08/19/在hexo中加入多说评论/" id="post-next" class="post-nav-link">
+      <a href="/2016/09/20/Error-DEPTH-ZERO-SELF-SIGNED-CERT/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">在hexo中加入多说评论模块</h4>
+        <h4 class="title">Error: DEPTH_ZERO_SELF_SIGNED_CERT</h4>
       </a>
     </div>
   
@@ -256,7 +248,7 @@ Quick">
             
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hello-world" data-title="Hello World" data-url="http://shenjoel.github.io/2016/08/19/hello-world/index.html"></div>
+	<div class="ds-thread" data-thread-key="总结使用node对接OAuth2的一些经验" data-title="总结使用node对接OAuth2的一些经验" data-url="http://shenjoel.github.io/2016/10/08/总结使用node对接OAuth2的一些经验/index.html"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -287,10 +279,10 @@ Quick">
 
 <script>
 var BLOG_SHARE = {
-    title: "Hello World",
+    title: "总结使用node对接OAuth2的一些经验",
     pic: "/img/brand.png",
     summary: document.getElementsByName('summary')[0].content,
-    url: "http://shenjoel.github.io/2016/08/19/hello-world/index.html"
+    url: "http://shenjoel.github.io/2016/10/08/总结使用node对接OAuth2的一些经验/index.html"
 };
 </script>
 <div class="global-share" id="global-share">
