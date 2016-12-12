@@ -31,9 +31,25 @@
     var OneSignal = window.OneSignal || [];
     OneSignal.push(["init", {
       appId: "29151cfd-9a78-4aa0-aeb6-e6376be8fe0f",
-      autoRegister: false,
+      autoRegister: true,
       notifyButton: {
         enable: false /* Set to false to hide */
+      },
+      welcomeNotification: {
+          "title": "My Custom Title",
+          "message": "Thanks for subscribing!"
+          // disable: true
+      },
+      // Your other init options here
+      // Your other init options here
+      promptOptions: {
+          /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+          /* actionMessage limited to 90 characters */
+          actionMessage: "We'd like to show you notifications for the latest news and updates.",
+          /* acceptButtonText limited to 15 characters */
+          acceptButtonText: "ALLOW",
+          /* cancelButtonText limited to 15 characters */
+          cancelButtonText: "NO THANKS"
       },
       safari_web_id: "web.onesignal.auto.3145fc89-5d6b-4727-99ef-e9ab80472582"
     }]);
@@ -446,14 +462,14 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/19/hello-world/">Hello World</a>
+      <a class="post-title-link" href="/2016/08/19/在hexo中加入多说评论/">在hexo中加入多说评论模块</a>
     </h3>
   
 
 
 
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多说/">多说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/评论/">评论</a></li></ul>
 
   </div>
 </article>
@@ -472,14 +488,14 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2016/08/19/在hexo中加入多说评论/">在hexo中加入多说评论模块</a>
+      <a class="post-title-link" href="/2016/08/19/hello-world/">Hello World</a>
     </h3>
   
 
 
 
     
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多说/">多说</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/评论/">评论</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
   </div>
 </article>
