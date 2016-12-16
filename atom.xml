@@ -407,33 +407,6 @@
   </entry>
   
   <entry>
-    <title>在hexo中加入多说评论模块</title>
-    <link href="http://shenjoel.github.io/2016/08/19/%E5%9C%A8hexo%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA/"/>
-    <id>http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/</id>
-    <published>2016-08-19T07:51:58.000Z</published>
-    <updated>2016-08-24T10:31:08.477Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(<a href="http://shenjoel.github.io/)。">http://shenjoel.github.io/)。</a><br>如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">	 &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; page.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;!-- 多说评论框 start --&gt;</div><div class="line">	&lt;div id=<span class="string">"ds-thread"</span> class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= page.path %&gt;"</span> data-title=<span class="string">"&lt;%= page.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">		var duoshuoQuery = &#123;short_name:<span class="string">"datoublog"</span>&#125;;</div><div class="line">		(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">		ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">		ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">		ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">		(document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">		 || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(&lt;a href=&quot;http://shenjoel.github.io/)。&quot;&gt;http://shenjoel.
-    
-    </summary>
-    
-    
-      <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
-    
-      <category term="多说" scheme="http://shenjoel.github.io/tags/%E5%A4%9A%E8%AF%B4/"/>
-    
-      <category term="评论" scheme="http://shenjoel.github.io/tags/%E8%AF%84%E8%AE%BA/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
     <link href="http://shenjoel.github.io/2016/08/19/hello-world/"/>
     <id>http://shenjoel.github.io/2016/08/19/hello-world/</id>
@@ -459,6 +432,33 @@
     
     
       <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在hexo中加入多说评论模块</title>
+    <link href="http://shenjoel.github.io/2016/08/19/%E5%9C%A8hexo%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%A4%9A%E8%AF%B4%E8%AF%84%E8%AE%BA/"/>
+    <id>http://shenjoel.github.io/2016/08/19/在hexo中加入多说评论/</id>
+    <published>2016-08-19T07:51:58.000Z</published>
+    <updated>2016-08-24T10:31:08.477Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(<a href="http://shenjoel.github.io/)。">http://shenjoel.github.io/)。</a><br>如果使用的是默认的landscape主题只需要修改themes\landscape\layout_partial\article.ejs中的</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;div id=<span class="string">"disqus_thread"</span>&gt;</div><div class="line">	 &lt;noscript&gt;Please <span class="built_in">enable</span> JavaScript to view the &lt;a href=<span class="string">"//disqus.com/?ref_noscript"</span>&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; page.comments &amp;&amp; config.duoshuo_shortname)&#123; %&gt;</div><div class="line">&lt;section id=<span class="string">"comments"</span>&gt;</div><div class="line">	&lt;!-- 多说评论框 start --&gt;</div><div class="line">	&lt;div id=<span class="string">"ds-thread"</span> class=<span class="string">"ds-thread"</span> data-thread-key=<span class="string">"&lt;%= page.path %&gt;"</span> data-title=<span class="string">"&lt;%= page.title %&gt;"</span> data-url=<span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;!-- 多说评论框 end --&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</div><div class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">		var duoshuoQuery = &#123;short_name:<span class="string">"datoublog"</span>&#125;;</div><div class="line">		(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		var ds = document.createElement(<span class="string">'script'</span>);</div><div class="line">		ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">		ds.src = (document.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">		ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">		(document.getElementsByTagName(<span class="string">'head'</span>)[0] </div><div class="line">		 || document.getElementsByTagName(<span class="string">'body'</span>)[0]).appendChild(ds);</div><div class="line">		&#125;)();</div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;!-- 多说公共JS代码 end --&gt;</div><div class="line">&lt;/section&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先在根目录下_config.yml中增加duoshuo_shortname: 你站点的short_name，这里的short_name也就是你的二级域名, 例如(&lt;a href=&quot;http://shenjoel.github.io/)。&quot;&gt;http://shenjoel.
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://shenjoel.github.io/tags/hexo/"/>
+    
+      <category term="多说" scheme="http://shenjoel.github.io/tags/%E5%A4%9A%E8%AF%B4/"/>
+    
+      <category term="评论" scheme="http://shenjoel.github.io/tags/%E8%AF%84%E8%AE%BA/"/>
     
   </entry>
   
