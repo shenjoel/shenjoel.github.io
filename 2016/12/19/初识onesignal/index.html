@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>初识OneSignal | Joel&#39;s blog | Nice to meet you</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#22242b">
+  
+  
+  <meta name="keywords" content="OneSignal,webpush">
+  <meta name="description" content="对于web site的意义相信大家对于我们的手机锁屏界面上推送的消息都不陌生，尽管拿不到确切的数据证明用户的点击转化率有多高，但多一种通知的渠道，便能配合各种运营营销计划。但是，国内的大部分情况，消息推送的来源就是应用程序。对于web site来说，浏览过就是过了，即使对你的站点有那么一丝丝兴趣，当前无用，关了也就关了。俗话说得好，“不在沉默中爆发，便在沉默中灭亡”，那么就让OneSignal来爆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识OneSignal">
+<meta property="og:url" content="http://shenjoel.github.io/2016/12/19/初识onesignal/index.html">
+<meta property="og:site_name" content="Joel's blog">
+<meta property="og:description" content="对于web site的意义相信大家对于我们的手机锁屏界面上推送的消息都不陌生，尽管拿不到确切的数据证明用户的点击转化率有多高，但多一种通知的渠道，便能配合各种运营营销计划。但是，国内的大部分情况，消息推送的来源就是应用程序。对于web site来说，浏览过就是过了，即使对你的站点有那么一丝丝兴趣，当前无用，关了也就关了。俗话说得好，“不在沉默中爆发，便在沉默中灭亡”，那么就让OneSignal来爆">
+<meta property="og:updated_time" content="2016-12-19T12:12:08.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识OneSignal">
+<meta name="twitter:description" content="对于web site的意义相信大家对于我们的手机锁屏界面上推送的消息都不陌生，尽管拿不到确切的数据证明用户的点击转化率有多高，但多一种通知的渠道，便能配合各种运营营销计划。但是，国内的大部分情况，消息推送的来源就是应用程序。对于web site来说，浏览过就是过了，即使对你的站点有那么一丝丝兴趣，当前无用，关了也就关了。俗话说得好，“不在沉默中爆发，便在沉默中灭亡”，那么就让OneSignal来爆">
+  
+    <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  
+  <meta name="summary" content="前端开发&amp;深入浅出">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "1402482c-9bc0-47f3-a56a-20ecdae61941",
+      autoRegister: true,
+      notifyButton: {
+        enable: false /* Set to false to hide */
+      },
+      welcomeNotification: {
+          "title": "VIPme",
+          "message": "Thanks for subscribing!"
+          // disable: true
+      },
+      safari_web_id: "web.onesignal.auto.3cda868c-95ba-4dc0-a9c6-5ad5b099bc53"
+    }]);
+  </script>
+</head>
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/brand.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Joel</h5>
+        <a href="mailto:372620726@qq.com" title="372620726@qq.com" class="mail">372620726@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/shenjoel" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-link"></i>
+            友情链接
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://wurh.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links1"></i>
+            华ing&#39;s blog
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://firewood1122.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links2"></i>
+            firewood&#39;s blog
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Joel&#39;s blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">初识OneSignal</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">初识OneSignal</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2016-12-19T11:28:33.000Z" itemprop="datePublished" class="page-time">
+  2016-12-19
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-初识onesignal" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OneSignal/">OneSignal</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpush/">webpush</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对于web-site的意义"><span class="post-toc-text">对于web site的意义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是OneSignal"><span class="post-toc-text">什么是OneSignal?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#为什么要使用OneSignal"><span class="post-toc-text">为什么要使用OneSignal?</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="对于web-site的意义"><a href="#对于web-site的意义" class="headerlink" title="对于web site的意义"></a>对于web site的意义</h3><p>相信大家对于我们的手机锁屏界面上推送的消息都不陌生，尽管拿不到确切的数据证明用户的点击转化率有多高，但多一种通知的渠道，便能配合各种运营营销计划。但是，国内的大部分情况，消息推送的来源就是应用程序。对于web site来说，浏览过就是过了，即使对你的站点有那么一丝丝兴趣，当前无用，关了也就关了。俗话说得好，“不在沉默中爆发，便在沉默中灭亡”，那么就让OneSignal来爆发吧。 </p>
+<h3 id="什么是OneSignal"><a href="#什么是OneSignal" class="headerlink" title="什么是OneSignal?"></a>什么是OneSignal?</h3><p><a href="https://onesignal.com/" target="_blank" rel="external">OneSignal</a> 就是针对<code>网站和移动应用程序</code>的推送通知服务，为每个平台提供专用的SDK，RESTful服务器API和在线的运营后台，供营销人员设计和发送推送通知。</p>
+<h3 id="为什么要使用OneSignal"><a href="#为什么要使用OneSignal" class="headerlink" title="为什么要使用OneSignal?"></a>为什么要使用OneSignal?</h3><p>– <code>使用简易</code>：实现到GCM / FCM（Google）和APNS（Apple）协议的可靠接口是很困难的。 有开源项目做到这一点，但即使最好的一个突破，当消息量一次超过50万。 这些协议也经常变化，例如，苹果最近发布了一个新的通知协议，并弃用他们旧的。<br>– <code>高级功能</code>：OneSignal提供营销工具，包括A / B测试，细分定位，本地化，点滴营销和转化跟踪。<br>– <code>多平台支持</code>：OneSignal提供统一的UI和API，以在iOS，Android，Amazon Fire，Windows Phone，Chrome应用，Safari，Chrome Web和Firefox上推送通知。<br>– <code>支持SDK</code>：OneSignal为几乎所有主要的跨平台移动开发环境提供SDK，包括Unity，PhoneGap，Cordova，Ionic，Intel XDK，React Native，Corona，Xamarin，Marmalade和Adobe Air。<br>– <code>免费开源</code>：最重要的是，OneSignal是一个免费服务，不限设备和通知。</p>
+<p>参考文档:<a href="https://documentation.onesignal.com/docs" target="_blank" rel="external">https://documentation.onesignal.com/docs</a></p>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://shenjoel.github.io/2016/12/19/初识onesignal/" target="_blank" rel="external">http://shenjoel.github.io/2016/12/19/初识onesignal/</a>
+                </p>
+                <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/11/20/javascript中0-1-0-2-0-3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">javascript中0.1 + 0.2 != 0.3?</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="初识onesignal" data-title="初识OneSignal" data-url="http://shenjoel.github.io/2016/12/19/初识onesignal/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"shenjoel"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "初识OneSignal",
+    pic: "/img/brand.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://shenjoel.github.io/2016/12/19/初识onesignal/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
