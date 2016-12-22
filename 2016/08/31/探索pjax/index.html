@@ -54,6 +54,12 @@ Ajax为主的SPA型开发模式– SPA - Single Page Applicati">
       OneSignal.push(["init", {
           appId: "29151cfd-9a78-4aa0-aeb6-e6376be8fe0f",
           autoRegister: true,
+          promptOptions: {
+            showCredit: false,
+            actionMessage: '',
+            acceptButtonText: 'CONTINUE',
+            cancelButtonText: 'NO THANKS'
+          },
           notifyButton: {
               enable: false /* Set to false to hide */
           },
