@@ -30,6 +30,21 @@
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileImage" content="img/icon-pwa-144X144.png">
+  <meta name="msapplication-TileColor" content="#25262b">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Joel's blog">
+  <link rel="apple-touch-icon" href="img/icon-pwa-152X152.png">
+  <script src="/js/sw.js" async></script>
+  <script>
+    if('serviceWorker' in navigator) {  
+      navigator.serviceWorker  
+          .register('/js/sw.js')  
+          .then(function() { console.log('Service Worker Registered'); });  
+    }
+  </script>
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
   <script>
       var OneSignal = window.OneSignal || [];
