@@ -37,11 +37,10 @@ Quick">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Joel's blog">
   <link rel="apple-touch-icon" href="img/icon-pwa-152X152.png">
-  <script src="/js/sw.js" async></script>
   <script>
     if('serviceWorker' in navigator) {  
       navigator.serviceWorker  
-          .register('/js/sw.js')  
+          .register('/sw.js')  
           .then(function() { console.log('Service Worker Registered'); });  
     }
   </script>
@@ -272,13 +271,20 @@ Quick">
 <nav class="post-nav">
   
     <div class="waves-block waves-effect prev fl">
-      <a href="/2016/08/19/在hexo中加入多说评论/" id="post-prev" class="post-nav-link">
+      <a href="/2016/08/20/移动web性能优化篇-图片的影响/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">在hexo中加入多说评论模块</h4>
+        <h4 class="title">移动web性能优化篇-图片的影响</h4>
       </a>
     </div>
   
 
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/08/19/在hexo中加入多说评论/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">在hexo中加入多说评论模块</h4>
+      </a>
+    </div>
   
 </nav>
 

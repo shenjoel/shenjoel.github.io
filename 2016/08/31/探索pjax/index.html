@@ -55,11 +55,10 @@ Ajax为主的SPA型开发模式– SPA - Single Page Applicati">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Joel's blog">
   <link rel="apple-touch-icon" href="img/icon-pwa-152X152.png">
-  <script src="/js/sw.js" async></script>
   <script>
     if('serviceWorker' in navigator) {  
       navigator.serviceWorker  
-          .register('/js/sw.js')  
+          .register('/sw.js')  
           .then(function() { console.log('Service Worker Registered'); });  
     }
   </script>
