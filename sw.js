@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
-var cacheName = 'joelblog-sorce-v1.0.0';
+var cacheName = 'joelblog-sorce-v1.0.1';
 var filesToCache = [
     '/',
     '/index.html',
