@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vue.js资源 | Joel&#39;s blog | Nice to meet you</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#22242b">
+  
+  
+  <meta name="keywords" content="vue">
+  <meta name="description" content="Vue.js资源分享如何优雅地使用此文档
+入门先从官网文档入手，粗略过一遍有个印象，力求回查时能找到对应的关键字或位置。
+vuejs中文官网
+vuejs英文官网
+vuejs组织
+
+
+发出一个问题之后，不要暂时的离开电脑，如果没有把握先不要提问。
+珍惜每一次提问，感恩每一次反馈，每个人工作还是业余之外抽出的时间有限，充分准备好应有的资源之后再发问，有利于问题能够高效质量地得到解决。尤其是具备解决问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js资源">
+<meta property="og:url" content="http://shenjoel.github.io/2017/02/17/Vue.js资源/index.html">
+<meta property="og:site_name" content="Joel's blog">
+<meta property="og:description" content="Vue.js资源分享如何优雅地使用此文档
+入门先从官网文档入手，粗略过一遍有个印象，力求回查时能找到对应的关键字或位置。
+vuejs中文官网
+vuejs英文官网
+vuejs组织
+
+
+发出一个问题之后，不要暂时的离开电脑，如果没有把握先不要提问。
+珍惜每一次提问，感恩每一次反馈，每个人工作还是业余之外抽出的时间有限，充分准备好应有的资源之后再发问，有利于问题能够高效质量地得到解决。尤其是具备解决问题">
+<meta property="og:updated_time" content="2017-02-17T10:54:50.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js资源">
+<meta name="twitter:description" content="Vue.js资源分享如何优雅地使用此文档
+入门先从官网文档入手，粗略过一遍有个印象，力求回查时能找到对应的关键字或位置。
+vuejs中文官网
+vuejs英文官网
+vuejs组织
+
+
+发出一个问题之后，不要暂时的离开电脑，如果没有把握先不要提问。
+珍惜每一次提问，感恩每一次反馈，每个人工作还是业余之外抽出的时间有限，充分准备好应有的资源之后再发问，有利于问题能够高效质量地得到解决。尤其是具备解决问题">
+  
+    <link rel="alternative" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  
+  <meta name="summary" content="前端开发&amp;深入浅出">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileImage" content="img/icon-pwa-144X144.png">
+  <meta name="msapplication-TileColor" content="#25262b">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Joel's blog">
+  <link rel="apple-touch-icon" href="img/icon-pwa-152X152.png">
+  <script>
+    if('serviceWorker' in navigator) {  
+      navigator.serviceWorker  
+          .register('/sw.js')  
+          .then(function() { console.log('Service Worker Registered'); });  
+    }
+  </script>
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+      var OneSignal = window.OneSignal || [];
+      OneSignal.push(["init", {
+          appId: "29151cfd-9a78-4aa0-aeb6-e6376be8fe0f",
+          autoRegister: true,
+          promptOptions: {
+            showCredit: true,
+            actionMessage: 'Nice to meet U',
+            acceptButtonText: 'CONTINUE',
+            cancelButtonText: 'NO THANKS'
+          },
+          notifyButton: {
+              enable: false /* Set to false to hide */
+          },
+          welcomeNotification: {
+              // "title": "VIPme",
+              // "message": "Thanks for subscribing!"
+              disable: true
+          },
+          safari_web_id: "web.onesignal.auto.3145fc89-5d6b-4727-99ef-e9ab80472582"
+      }]);
+  </script>
+  <script src="/js/swhandle.js" async></script>
+</head>
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/brand.png"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Joel</h5>
+        <a href="mailto:372620726@qq.com" title="372620726@qq.com" class="mail">372620726@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            主页
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/shenjoel" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-link"></i>
+            友情链接
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://wurh.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links1"></i>
+            华ing&#39;s blog
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://firewood1122.github.io/" target="_blank" >
+            <i class="icon icon-lg icon-links2"></i>
+            firewood&#39;s blog
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Joel&#39;s blog &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vue.js资源</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Vue.js资源</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2017-02-17T10:55:00.000Z" itemprop="datePublished" class="page-time">
+  2017-02-17
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-Vue.js资源" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vue-js资源分享"><span class="post-toc-text">Vue.js资源分享</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何优雅地使用此文档"><span class="post-toc-text">如何优雅地使用此文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-资源教程"><span class="post-toc-text">一. 资源教程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-文档"><span class="post-toc-text">二. 文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四-示例"><span class="post-toc-text">四. 示例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五-开发工具相关"><span class="post-toc-text">五. 开发工具相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六-答疑"><span class="post-toc-text">六. 答疑</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七-源码学习"><span class="post-toc-text">七. 源码学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#八-框架相关"><span class="post-toc-text">八. 框架相关</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Vue-js资源分享"><a href="#Vue-js资源分享" class="headerlink" title="Vue.js资源分享"></a>Vue.js资源分享</h2><h3 id="如何优雅地使用此文档"><a href="#如何优雅地使用此文档" class="headerlink" title="如何优雅地使用此文档"></a>如何优雅地使用此文档</h3><ol>
+<li>入门先从官网文档入手，粗略过一遍有个印象，力求回查时能找到对应的关键字或位置。<ul>
+<li><a href="http://cn.vuejs.org/" target="_blank" rel="external">vuejs中文官网</a></li>
+<li><a href="http://vuejs.org/" target="_blank" rel="external">vuejs英文官网</a></li>
+<li><a href="https://github.com/vuejs" target="_blank" rel="external">vuejs组织</a></li>
+</ul>
+</li>
+<li>发出一个问题之后，不要暂时的离开电脑，如果没有把握先不要提问。</li>
+<li>珍惜每一次提问，感恩每一次反馈，每个人工作还是业余之外抽出的时间有限，充分准备好应有的资源之后再发问，有利于问题能够高效质量地得到解决。尤其是具备解决问题能力的人，通常时间都很宝贵。</li>
+<li>先搜索，再思考，最后再提问，很多人把这个顺序搞反了。</li>
+<li><ul>
+<li><a href="https://www.zhihu.com/question/25464141" target="_blank" rel="external">如何优雅地向前辈或者高手请教技术问题？</a><br>以上部分观点出自此文 <a href="http://www.zhihu.com/question/20824615" target="_blank" rel="external">如何优雅地使用 Stack Overflow</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="一-资源教程"><a href="#一-资源教程" class="headerlink" title="一. 资源教程"></a>一. 资源教程</h3><ol>
+<li><p>综合类</p>
+<ul>
+<li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="external">vuejs 英文资料</a></li>
+<li><a href="https://shimo.im/s/ab53739d-ca98-bd1e-aea0-fcc7378c6bb3" target="_blank" rel="external">Vue中文资料总汇</a></li>
+<li><a href="http://segmentfault.com/a/1190000000411057" target="_blank" rel="external">Vue.js 的一些资源索引</a></li>
+<li><a href="http://www.jianshu.com/p/afd8e1db7d9b" target="_blank" rel="external">vue资料</a></li>
+<li><a href="http://www.cnblogs.com/keepfool/p/5657065.html" target="_blank" rel="external">Vue.js——vue-resource全攻略</a></li>
+</ul>
+</li>
+<li><p>入门类</p>
+<ul>
+<li><a href="http://segmentfault.com/a/1190000003968020" target="_blank" rel="external">vue 快速入门</a></li>
+<li><a href="https://segmentfault.com/a/1190000005018970" target="_blank" rel="external">vuex - 入门教程实例1</a></li>
+<li><a href="https://segmentfault.com/a/1190000005148935" target="_blank" rel="external">vuex - 入门教程实例2</a></li>
+<li><a href="https://segmentfault.com/a/1190000006988584" target="_blank" rel="external">vuex - 入门教程实例3</a></li>
+</ul>
+</li>
+<li><p>英文教程</p>
+<ul>
+<li><a href="https://laracasts.com/series/learning-vue-step-by-step/" target="_blank" rel="external">Learning Vue 1.0: Step By Step</a></li>
+<li><a href="https://coligo.io/" target="_blank" rel="external">vue Learning Tutorials</a></li>
+</ul>
+</li>
+<li><p>社区</p>
+<ul>
+<li><a href="http://segmentfault.com/t/vue.js" target="_blank" rel="external">sf - vue标签</a></li>
+<li><a href="https://www.zhihu.com/topic/20022242/questions" target="_blank" rel="external">知乎 - vue标签</a></li>
+<li><a href="http://vue-js.com/" target="_blank" rel="external">Vue.js专业中文社区</a></li>
+<li><a href="https://github.com/vuejs/vue/issues" target="_blank" rel="external">vue - issues</a></li>
+</ul>
+</li>
+<li><p>视频教程</p>
+<ul>
+<li><a href="https://github.com/bhnddowinf/vuejs-learn" target="_blank" rel="external">小凡哥录制视频教程</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="二-文档"><a href="#二-文档" class="headerlink" title="二. 文档"></a>二. 文档</h3><ul>
+<li>API<ul>
+<li><a href="http://cn.vuejs.org/api/" target="_blank" rel="external">Vue.js - API</a></li>
+</ul>
+</li>
+<li><p>router</p>
+<ul>
+<li><a href="http://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router文档</a></li>
+</ul>
+</li>
+<li><p>表格</p>
+<ul>
+<li><a href="https://github.com/jinzhe/vue-editable" target="_blank" rel="external">ZEE大神作品 - vue-editable</a></li>
+</ul>
+</li>
+<li>分页<ul>
+<li><a href="http://segmentfault.com/a/1190000003931500" target="_blank" rel="external">vue入门－实现一个分页组件(1.0.3版本)</a></li>
+<li><a href="https://github.com/cycgit/vue-pagination" target="_blank" rel="external">vue(1.0.3) 分页组件</a></li>
+<li><a href="https://www.npmjs.com/package/vue-pagination" target="_blank" rel="external">分页组件 – 命令方式，支持多个，主要靠配置</a></li>
+</ul>
+</li>
+<li>移动<ul>
+<li><a href="https://github.com/vuejs/vue-touch" target="_blank" rel="external">Hammer.js wrapper for Vue.js</a></li>
+<li><a href="https://github.com/MeCKodo/vue-tap" target="_blank" rel="external">vue的tap手势插件</a></li>
+</ul>
+</li>
+<li>微信<ul>
+<li><a href="http://aidenzou.github.io/vue-weui/" target="_blank" rel="external">为微信Web服务量身设计</a></li>
+</ul>
+</li>
+<li>日历<ul>
+<li><a href="https://github.com/jinzhe/vue-calendar" target="_blank" rel="external">ZEE大神作品 - vue-calendar</a></li>
+<li><a href="https://github.com/hilongjw/vue-datepicker" target="_blank" rel="external">Awe - 日历组件</a></li>
+<li><a href="https://github.com/jas0ncn/vue-timepicker" target="_blank" rel="external">jas0ncn - 日历组件</a></li>
+</ul>
+</li>
+<li>进度条<ul>
+<li><a href="https://github.com/greyby/vue-spinner" target="_blank" rel="external">vue 进度条</a></li>
+</ul>
+</li>
+<li>验证<ul>
+<li><a href="https://github.com/vuejs/vue-validator" target="_blank" rel="external">Validator component for VueJS</a></li>
+<li><a href="https://github.com/xrado/vue-validator" target="_blank" rel="external">form validator for vue 0.11</a></li>
+</ul>
+</li>
+<li>Lazyload    <ul>
+<li><a href="https://github.com/hilongjw/vue-lazyload" target="_blank" rel="external">图片的lazyload</a></li>
+<li><a href="https://github.com/ElemeFE/vue-loadmore" target="_blank" rel="external">下拉加载</a></li>
+</ul>
+</li>
+<li>Loader<ul>
+<li><a href="http://segmentfault.com/a/1190000004060034" target="_blank" rel="external">【vue】vue组件化开发初体验-示例vue-loader-example学习记录</a></li>
+</ul>
+</li>
+<li>Uploader<ul>
+<li><a href="https://www.npmjs.com/package/vue-file-upload" target="_blank" rel="external">vue-file-upload</a></li>
+<li><a href="https://www.npmjs.com/package/vue-file-upload-component" target="_blank" rel="external">vue-file-upload-component</a></li>
+</ul>
+</li>
+<li>Slide<ul>
+<li><a href="https://github.com/guan6/vue-onlySlider-x" target="_blank" rel="external">vue-onlySlider-x</a></li>
+</ul>
+</li>
+<li>Drag<ul>
+<li><a href="https://github.com/james2doyle/vue-drag-and-drop" target="_blank" rel="external">vue-drag-and-drop</a></li>
+</ul>
+</li>
+<li>二维码<ul>
+<li><a href="https://github.com/xiaokaike/vue-qrcode" target="_blank" rel="external">vue-qrcode</a></li>
+</ul>
+</li>
+<li>省市联动<ul>
+<li><a href="https://github.com/QingWei-Li/vue-region-picker" target="_blank" rel="external">Vue 省市区三级联动组件</a></li>
+</ul>
+</li>
+<li>TimeLine<ul>
+<li><a href="https://github.com/yelingfeng/vue-timelinepick" target="_blank" rel="external">Vue企业级时间轴选择器</a></li>
+</ul>
+</li>
+<li>Template<ul>
+<li><a href="https://github.com/yelingfeng/vue-ylf-template" target="_blank" rel="external">vue2.0模板</a></li>
+<li><a href="https://github.com/yelingfeng/vue-2.0-FamilyBucket" target="_blank" rel="external">vue2.0全家桶实例</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="四-示例"><a href="#四-示例" class="headerlink" title="四. 示例"></a>四. 示例</h3><ul>
+<li>综合示例<ul>
+<li><a href="http://cn-stage.vuejs.org/examples/" target="_blank" rel="external">官方例子 - 包括Markdown编辑器，表格组件等</a>    </li>
+<li><a href="https://github.com/vingojw/vue-vueRouter-webpack" target="_blank" rel="external">Vue, vue-router, Webpack 和 vue-loader</a>    </li>
+<li><a href="https://github.com/KennyWho/vue-chestnut" target="_blank" rel="external">简单的vuejs例子 - 群内高手X-Roy大作</a>    </li>
+<li><a href="https://github.com/toplan/vue-spa-example" target="_blank" rel="external">vue single page app example</a>    </li>
+<li><a href="http://segmentfault.com/a/1190000004372736" target="_blank" rel="external">使用node+vue.js实现SPA应用</a>    </li>
+</ul>
+</li>
+<li>Ajax<ul>
+<li><a href="https://github.com/james2doyle/vue-ajax-form-component" target="_blank" rel="external">A Vue.js component for creating simple AJAX forms.</a></li>
+</ul>
+</li>
+<li>Webpack<ul>
+<li><a href="http://jiongks.name/blog/just-vue/" target="_blank" rel="external">Vue + webpack 项目实践</a></li>
+<li><a href="http://segmentfault.com/a/1190000003630417" target="_blank" rel="external">基于vue.js和webpack的Chat示例</a></li>
+<li><a href="http://djyde.github.io/2015/08/29/vuejs-and-webpack-1/" target="_blank" rel="external">Vue.js 和 Webpack（一）</a></li>
+<li><a href="http://djyde.github.io/2015/08/30/vuejs-and-webpack-2/" target="_blank" rel="external">Vue.js 和 Webpack（二）</a></li>
+<li><a href="http://djyde.github.io/2015/08/31/vuejs-and-webpack-3/" target="_blank" rel="external">Vue.js 和 Webpack（三）</a></li>
+<li><a href="https://github.com/MeCKodo/webpack" target="_blank" rel="external">二哲 - 结合具体项目的webpack配置</a></li>
+</ul>
+</li>
+<li>Gulp<ul>
+<li><a href="https://github.com/JsAaron/vue-gulp-webpack" target="_blank" rel="external">vue-gulp-webpack单页面组件开发</a></li>
+</ul>
+</li>
+<li>Tab<ul>
+<li><a href="http://yuche.github.io/vue-strap/#tabs" target="_blank" rel="external">vue tab</a></li>
+</ul>
+</li>
+<li>Shopping<ul>
+<li><a href="https://github.com/andylei18/vue-shopping" target="_blank" rel="external">基于Vue模仿蘑菇街的单页应用</a></li>
+</ul>
+</li>
+<li>其它<ul>
+<li><a href="http://okoala.github.io/vue-antd/#!/docs/introduce" target="_blank" rel="external">Ant Design 的 Vue 实现</a></li>
+<li><a href="https://github.com/shinygang/Vue-cnodejs" target="_blank" rel="external">基于vue.js重写Cnodejs.org社区的webapp</a></li>
+<li><a href="https://github.com/giscafer/Ponitor" target="_blank" rel="external">北京-giscafer - vue+webpack+node.js 价格监测应用</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="五-开发工具相关"><a href="#五-开发工具相关" class="headerlink" title="五. 开发工具相关"></a>五. 开发工具相关</h3><ol>
+<li>Atom<ul>
+<li><a href="https://github.com/CYBAI/language-vue-component" target="_blank" rel="external">atom vue 代码高亮</a></li>
+<li><a href="http://www.jianshu.com/p/98f99c20493c" target="_blank" rel="external">如何发布一个Atom的package</a></li>
+<li><a href="https://atom.io/packages/vue-format" target="_blank" rel="external">vue-format</a></li>
+</ul>
+</li>
+<li>Sublime-text<ul>
+<li><a href="https://github.com/vuejs/vue-syntax-highlight" target="_blank" rel="external">Vue Syntax Highlight</a></li>
+</ul>
+</li>
+<li>Webstorm<ul>
+<li><a href="http://www.lred.me/2016/01/07/webstorm%E6%B7%BB%E5%8A%A0-vue%E6%96%87%E4%BB%B6%E6%94%AF%E6%8C%81/" target="_blank" rel="external">webstorm添加*.vue文件支持</a>    </li>
+<li><a href="https://plugins.jetbrains.com/plugin/8057?pr=webStorm" target="_blank" rel="external">webstorm vue插件</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="六-答疑"><a href="#六-答疑" class="headerlink" title="六. 答疑"></a>六. 答疑</h3><ul>
+<li><a href="http://www.jianshu.com/p/7f7f050c9edf" target="_blank" rel="external">Vue.js为什么不支持templateUrl模式</a></li>
+<li><a href="https://github.com/jrainlau/vuejs-demo" target="_blank" rel="external">实现了vuejs组件之间的通讯问题</a></li>
+<li><a href="https://www.zhihu.com/question/38213423" target="_blank" rel="external">国内有哪些公司在用Vue.js，有什么心得</a></li>
+<li><a href="https://www.zhihu.com/question/39149401" target="_blank" rel="external">vue 支持服务器端渲染吗</a></li>
+<li><a href="http://div.io/topic/1343" target="_blank" rel="external">Vue.js 和 Webpack</a></li>
+</ul>
+<h3 id="七-源码学习"><a href="#七-源码学习" class="headerlink" title="七. 源码学习"></a>七. 源码学习</h3><ul>
+<li><a href="http://jiongks.name/blog/vue-code-review" target="_blank" rel="external">Vue.js 源码学习笔记</a></li>
+<li><a href="http://www.cnblogs.com/sskyy/p/3695003.html" target="_blank" rel="external">VUE 源码分析</a></li>
+<li><a href="http://segmentfault.com/a/1190000004384515" target="_blank" rel="external">vue源码分析之如何实现observer和watcher</a></li>
+<li><a href="https://segmentfault.com/a/1190000004670036" target="_blank" rel="external">vue源码解析之一：transition</a></li>
+<li><a href="https://github.com/JsAaron/vue-analysis" target="_blank" rel="external">Vue源码学习 Vue.js v1.0.18</a></li>
+</ul>
+<h3 id="八-框架相关"><a href="#八-框架相关" class="headerlink" title="八. 框架相关"></a>八. 框架相关</h3><ul>
+<li><a href="http://www.imooc.com/video/6346" target="_blank" rel="external">尤小右 - 4-1 Vue.js-数据驱动的组件化前端开…</a></li>
+<li><a href="https://simplecast.fm/s/5e60d9be" target="_blank" rel="external">Evan You - Diving Deep into Vue.js</a></li>
+</ul>
+<blockquote>
+<p>文章转自：<a href="https://github.com/jsfront/src/blob/master/vuejs.md" target="_blank" rel="external">https://github.com/jsfront/src/blob/master/vuejs.md</a></p>
+</blockquote>
+
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://shenjoel.github.io/2017/02/17/Vue.js资源/" target="_blank" rel="external">http://shenjoel.github.io/2017/02/17/Vue.js资源/</a>
+                </p>
+                <footer><cite><a href="http://shenjoel.github.io">@Joel's blog</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2016/12/19/初识onesignal/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">初识OneSignal</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vue.js资源" data-title="Vue.js资源" data-url="http://shenjoel.github.io/2017/02/17/Vue.js资源/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"shenjoel"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Vue.js资源",
+    pic: "/img/brand.png",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://shenjoel.github.io/2017/02/17/Vue.js资源/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
