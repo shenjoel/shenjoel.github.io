@@ -403,31 +403,33 @@ var BLOG_SHARE = {
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-    var confmKey = 'U01TX0FVVEgyMDE4MDExMDEwMjM1NDEwNzYwMzY=';
-    var url = 'http://www.juso.go.kr/addrlink/addrLinkApi.do';
-    $.ajax({
-        url: url,
-        data: {
-            confmKey: confmKey,
-            currentPage: 1,
-            countPerPage: 10,
-            keyword: '별도의',
-            resultType: 'json'
-        },
-        type: 'get',
-        dataType: 'json',
-        success: (data) => {
-            console.log('success');
-            console.log(data);
-        },
-        error: (error) => {
-            console.log('error');
-            console.log(error)
-        },
-        complete: () => {
-            console.log('complete');
-        }
-    });
+var confmKey = 'U01TX0FVVEgyMDE4MDExMDEwMjM1NDEwNzYwMzY=';
+var url = 'http://www.juso.go.kr/addrlink/addrLinkApi.do';
+var uri = 'http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do';
+$.ajax({
+    url: uri,
+    data: {
+        confmKey: confmKey,
+        currentPage: 1,
+        countPerPage: 10,
+        keyword: '별도의',
+        resultType: 'json'
+    },
+    type: 'post',
+    dataType: 'jsonp',
+    crossDomain: true,
+    success: (data) => {
+        console.log('===success===');
+        console.log(data);
+    },
+    error: (error) => {
+        console.log('===error===');
+        console.log(error)
+    },
+    complete: () => {
+        console.log('===complete===');
+    }
+});
 </script>
 </body>
 </html>
