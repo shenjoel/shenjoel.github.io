@@ -674,7 +674,11 @@ var BLOG_SHARE = {
     $.ajax({
         url: url,
         data: {
-            confmKey: confmKey
+            confmKey: confmKey,
+            currentPage: 1,
+            countPerPage: 10,
+            keyword: '별도의',
+            resultType: 'json'
         },
         type: 'get',
         dataType: 'json',
