@@ -417,11 +417,12 @@ var BLOG_SHARE = {
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-var confmKey = 'U01TX0FVVEgyMDE4MDExMDEwMjM1NDEwNzYwMzY=';
+// var confmKey = 'U01TX0FVVEgyMDE4MDExMDEwMjM1NDEwNzYwMzY=';
+var confmKey = 'U01TX0FVVEgyMDE4MDExODE1NTkwODEwNzYxODA=';
 var url = 'http://www.juso.go.kr/addrlink/addrLinkApi.do';
 var uri = 'http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do';
 $.ajax({
-    url: uri,
+    url: url,
     data: {
         confmKey: confmKey,
         currentPage: 1,
@@ -429,16 +430,15 @@ $.ajax({
         keyword: '별도의',
         resultType: 'json'
     },
-    type: 'post',
-    dataType: 'jsonp',
-    crossDomain: true,
+    type: 'get',
+    dataType: 'json',
     success: (data) => {
         console.log('===success===');
         console.log(data);
     },
     error: (error) => {
         console.log('===error===');
-        console.log(error)
+        console.log(error);
     },
     complete: () => {
         console.log('===complete===');
