@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>Error: DEPTH_ZERO_SELF_SIGNED_CERT</title>
+  <meta name="author" content="Joel">
+  <meta name="description" content="前端开发&amp;深入浅出">
+  
+  
+  <meta property="og:title" content="Error: DEPTH_ZERO_SELF_SIGNED_CERT"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Joel&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;Nice to meet you
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Error: DEPTH_ZERO_SELF_SIGNED_CERT
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2016-09-20T03:16:31.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2016-09-20
+</time>
+
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/node/">node</a>
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%AE%9E%E7%8E%B0%E7%AC%AC%E4%B8%89%E6%96%B9%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%8E%A5%E6%97%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E4%BA%86%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="toc-text">在实现第三方系统对接时，提示了一个错误：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%80%8C%E5%9C%A8%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%B7%B3%E8%BF%87%E8%BF%99%E4%B8%80%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95%E6%98%AF%E6%B7%BB%E5%8A%A0%E4%B8%8B%E9%9D%A2%E8%BF%99%E5%8F%A5%EF%BC%9A"><span class="toc-text">而在开发过程中跳过这一问题的方法是添加下面这句：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E6%96%87%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%AD%E8%82%AF%E7%9A%84%E8%A7%A3%E9%87%8A%EF%BC%9A"><span class="toc-text">下文是一个中肯的解释：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E6%A6%82%E6%84%8F%E6%80%9D%E6%98%AF%EF%BC%9A"><span class="toc-text">大概意思是：</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h4 id="在实现第三方系统对接时，提示了一个错误："><a href="#在实现第三方系统对接时，提示了一个错误：" class="headerlink" title="在实现第三方系统对接时，提示了一个错误："></a>在实现第三方系统对接时，提示了一个错误：</h4><pre><code>Error: DEPTH_ZERO_SELF_SIGNED_CERT
+</code></pre><h4 id="而在开发过程中跳过这一问题的方法是添加下面这句："><a href="#而在开发过程中跳过这一问题的方法是添加下面这句：" class="headerlink" title="而在开发过程中跳过这一问题的方法是添加下面这句："></a>而在开发过程中跳过这一问题的方法是添加下面这句：</h4><pre><code>process.env.NODE_TLS_REJECT_UNAUTHORIZED = &quot;0&quot;;
+</code></pre><h4 id="下文是一个中肯的解释："><a href="#下文是一个中肯的解释：" class="headerlink" title="下文是一个中肯的解释："></a>下文是一个中肯的解释：</h4><p>Node is complaining because the TLS (SSL) certificate it’s been given is self-signed (i.e. it has no parent - a depth of 0). It expects to find a certificate signed by another certificate that is installed in your OS as a trusted root.</p>
+<p>Your “fix” is to disable Node from rejecting self-signed certificates by allowing ANY unauthorised certificate.</p>
+<p>Your fix is insecure and shouldn’t really be done at all, but is often done in development (it should never be done in production).</p>
+<p>The proper solution should be to put the self-signed certificate in your trusted root store OR to get a proper certificate signed by an existing Certificate Authority (which is already trusted by your server).</p>
+<h4 id="大概意思是："><a href="#大概意思是：" class="headerlink" title="大概意思是："></a>大概意思是：</h4><p>Node被赋予了TLS（SSL）证书是自签名的，它希望找到由安装在您的操作系统作为一个受信任的根证书，另一个签名的证书。</p>
+<p>你的“修复”是允许任何未经授权的证书，取消其拒绝自签名证书节点。这里指 <strong>process.env.NODE_TLS_REJECT_UNAUTHORIZED = “0”;</strong></p>
+<p>你的解决方法是不安全的，应该不是真的都做到，但往往是在做开发（它不应该在生产中进行）。</p>
+<p>正确的解决办法应该是把自签名证书在受信任的根存储或度日（这已经是你的服务器信任）现有的证书颁发机构签署一个适当的证书。</p>
+<hr>
+<p>此文章以记录自己还在坑里努力往上爬</p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Joel 2016-2020
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://shenjoel.github.io%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

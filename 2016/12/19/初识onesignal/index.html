@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>初识OneSignal</title>
+  <meta name="author" content="Joel">
+  <meta name="description" content="前端开发&amp;深入浅出">
+  
+  
+  <meta property="og:title" content="初识OneSignal"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Joel&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;Nice to meet you
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        初识OneSignal
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2016-12-19T11:28:33.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2016-12-19
+</time>
+
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/OneSignal/">OneSignal</a>·<a href="/tags/webpush/">webpush</a>
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8Eweb-site%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">对于web site的意义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFOneSignal"><span class="toc-text">什么是OneSignal?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8OneSignal"><span class="toc-text">为什么要使用OneSignal?</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h3 id="对于web-site的意义"><a href="#对于web-site的意义" class="headerlink" title="对于web site的意义"></a>对于web site的意义</h3><p>相信大家对于我们的手机锁屏界面上推送的消息都不陌生，尽管拿不到确切的数据证明用户的点击转化率有多高，但多一种通知的渠道，便能配合各种运营营销计划。但是，国内的大部分情况，消息推送的来源就是应用程序。对于web site来说，浏览过就是过了，即使对你的站点有那么一丝丝兴趣，当前无用，关了也就关了。俗话说得好，“不在沉默中爆发，便在沉默中灭亡”，那么就让OneSignal来爆发吧。 </p>
+<h3 id="什么是OneSignal"><a href="#什么是OneSignal" class="headerlink" title="什么是OneSignal?"></a>什么是OneSignal?</h3><p><a target="_blank" rel="noopener" href="https://onesignal.com/">OneSignal</a> 就是针对<code>网站和移动应用程序</code>的推送通知服务，为每个平台提供专用的SDK，RESTful服务器API和在线的运营后台，供营销人员设计和发送推送通知。</p>
+<h3 id="为什么要使用OneSignal"><a href="#为什么要使用OneSignal" class="headerlink" title="为什么要使用OneSignal?"></a>为什么要使用OneSignal?</h3><p>– <code>使用简易</code>：实现到GCM / FCM（Google）和APNS（Apple）协议的可靠接口是很困难的。 有开源项目做到这一点，但即使最好的一个突破，当消息量一次超过50万。 这些协议也经常变化，例如，苹果最近发布了一个新的通知协议，并弃用他们旧的。<br>– <code>高级功能</code>：OneSignal提供营销工具，包括A / B测试，细分定位，本地化，点滴营销和转化跟踪。<br>– <code>多平台支持</code>：OneSignal提供统一的UI和API，以在iOS，Android，Amazon Fire，Windows Phone，Chrome应用，Safari，Chrome Web和Firefox上推送通知。<br>– <code>支持SDK</code>：OneSignal为几乎所有主要的跨平台移动开发环境提供SDK，包括Unity，PhoneGap，Cordova，Ionic，Intel XDK，React Native，Corona，Xamarin，Marmalade和Adobe Air。<br>– <code>免费开源</code>：最重要的是，OneSignal是一个免费服务，不限设备和通知。</p>
+<p>参考文档:<a target="_blank" rel="noopener" href="https://documentation.onesignal.com/docs">https://documentation.onesignal.com/docs</a></p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Joel 2016-2020
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://shenjoel.github.io%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

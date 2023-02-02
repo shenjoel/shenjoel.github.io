@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>javascript中0.1 + 0.2 != 0.3?</title>
+  <meta name="author" content="Joel">
+  <meta name="description" content="前端开发&amp;深入浅出">
+  
+  
+  <meta property="og:title" content="javascript中0.1 + 0.2 != 0.3?"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Joel&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;Nice to meet you
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        javascript中0.1 + 0.2 != 0.3?
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2016-11-20T11:32:55.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2016-11-20
+</time>
+
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/javascript/">javascript</a>
+
+
+    </div>
+    <hr>
+    
+      
+    
+    <div class="picture-container">
+      
+    </div>
+    <p>0.1+0.2 等于0.3吗？相信拿着这条题目随便问一个高年级的小学生，他们都会毫不犹豫都回答：相等。是的，相等是正常的，这是常识。但是都说实践是检验真理的唯一标准，拿这道简单的算术题用javascript在chrome控制台试验一下：</p>
+<p>结果令人大跌眼镜，<code>在控制台输入0.1+0.2 == 0.3返回的结果竟然是false</code>我们输入0.1+0.2，看看结果，竟然是<code>0.30000000000000004</code>。</p>
+<p>这是为什么呢？在《Javascript权威指南》中有提到，<code>JS是不区分整数和浮点数的</code>，JS采用的是IEEE 754标准定义的64位浮点格式表示数字，所以JS中的所有数字都是浮点数。按照JS的数字格式，整数有的范围是<code>-2^53 ~ 2^53</code>，而且只能表示有限个浮点数，能表示的个数为<code>2^64 − 2^53 + 3</code>个。至于为什么是这个范围，可以具体看看《JavaScript 中的数字》这篇文章也解下。而我们都知道，浮点数的个数是无限的，这就导致了JS不能精确表达所有的浮点数，而只能是一个近似值。</p>
+<p>那怎样才能比较<code>0.1+0.2 == 0.3</code>呢？既然浮点数是一个近似值，那我们可以认定在某个可以接受的精度范围内，他们是相等的。因此可以定义一个比较函数来比较浮点数。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isFloatEqual</span>(<span class="params">f1,f2,digits</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> f1.<span class="title function_">toFixed</span>(digits) === f2.<span class="title function_">toFixed</span>(digits);</span><br><span class="line">&#125; </span><br><span class="line"><span class="title function_">isFloatEqual</span>(<span class="number">0.1</span>+<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">10</span>);   <span class="comment">//  返回true</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到，这时再比较0.1+0.2就与0.3相等了。这种比较，其实是字符串的比较，toFixed方法，返回的是一个字符串。可以在控制台中输入：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span>.<span class="title function_">toFixed</span>(<span class="number">1</span>)+<span class="number">0.2</span>.<span class="title function_">toFixed</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure><br>你会发现，返回的结果是”0.10.2”</p>
+<p>这种方法解决了0.1+0.2==0.3的问题，但是当我用isFloatEqual(0.3 - 0.2,0.1,10)的时候，发觉返回的值是false，这又是为什么呢？</p>
+<p>原来0.3 - 0.2计算出来的是0.09999999999999998，上面的方法只能覆盖到计算结果比实际结果大的情况，而对于小的情况无能为力。</p>
+<p>我们知道，当两个数相减，如果差在约定的精度范围内，我们就可以认为这两个数相等，根据这个原理，再来重写isFloatEqual函数，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isFloatEqual</span>(<span class="params">f1,f2,digits</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">abs</span>(f1 - f2) &lt; digits;</span><br><span class="line">&#125; </span><br><span class="line"><span class="title function_">isFloatEqual</span>(<span class="number">0.1</span>+<span class="number">0.2</span>,<span class="number">0.3</span>,<span class="number">0.001</span>);   <span class="comment">// true</span></span><br><span class="line"><span class="title function_">isFloatEqual</span>(<span class="number">0.3</span>-<span class="number">0.2</span>,<span class="number">0.1</span>,<span class="number">0.001</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>那除了上面的方法外，能不能让JS在做加减法的时候精确一点呢？<br>我们知道，只要在-2^53 ~ 2^53的范围内，JS做整数的加减运算是精确的，那么我们是不是可以将浮点数转换为整数，再进行运算呢？按照这个思路，在《浅谈JavaScript浮点数及其运算》这篇文章中，提供了一种方法，将代码粘贴如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">accAdd</span>(<span class="params">arg1,arg2</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> r1,r2,m;</span><br><span class="line">	<span class="keyword">try</span>&#123;r1=arg1.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r1=<span class="number">0</span>&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;r2=arg2.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r2=<span class="number">0</span>&#125;</span><br><span class="line">	m=<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>,<span class="title class_">Math</span>.<span class="title function_">max</span>(r1,r2))</span><br><span class="line">	<span class="keyword">return</span> (arg1*m+arg2*m)/m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种方法是先计算出两个浮点数的小数位数n,两个参数再分别与10^n（放大倍数）相乘，以达到对两个参数取整的目的，再用整数来进行相加运算，加完后除掉放大的倍数就可以得出结果了。</p>
+<p>现在用accAdd(0.1,0.2)，返回的结果是0.3了，但是评论里面马上有人提出accAdd(2.22,0.1) 的结果不是2.32，而是2.3200000000000003。原来在做arg1*m这一步时，依旧是浮点数运算，所以返回的结果不一定是整数，依旧是浮点数。</p>
+<p>我看到作者在做减法的时候用了toFixed()，如果用toFixed(n)是不是就可以了呢？来试一下，函数改造成这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">accAdd</span>(<span class="params">arg1,arg2</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> r1,r2,n,m;</span><br><span class="line">	<span class="keyword">try</span>&#123;r1=arg1.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r1=<span class="number">0</span>&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;r2=arg2.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r2=<span class="number">0</span>&#125;</span><br><span class="line">	n = <span class="title class_">Math</span>.<span class="title function_">max</span>(r1,r2);</span><br><span class="line">	m=<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>,n);</span><br><span class="line">	<span class="keyword">return</span> ((arg1*m+arg2*m)/m).<span class="title function_">toFixed</span>(n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这次再调用accAdd(2.22,0.1)时，返回的是2.32了，完美！</p>
+<p>但是手贱试了下accAdd(2.22,0.08),返回的结果是2.30，而我期望返回的结果是2.3。上文已经提到过，toFixed返回的是一个字符串，所以用toFixed返回2.30看来是正常的了。那如果要返回2.3要怎样做呢？</p>
+<p>其实很简单，用parseInt将arg1*m转换为整数就可以了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">accAdd</span>(<span class="params">arg1,arg2</span>)&#123;</span><br><span class="line">	<span class="keyword">var</span> r1,r2,m;</span><br><span class="line">	<span class="keyword">try</span>&#123;r1=arg1.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r1=<span class="number">0</span>&#125;</span><br><span class="line">	<span class="keyword">try</span>&#123;r2=arg2.<span class="title function_">toString</span>().<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>)[<span class="number">1</span>].<span class="property">length</span>&#125;<span class="keyword">catch</span>(e)&#123;r2=<span class="number">0</span>&#125;</span><br><span class="line">	m=<span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>,<span class="title class_">Math</span>.<span class="title function_">max</span>(r1,r2))</span><br><span class="line">	<span class="keyword">return</span> (<span class="built_in">parseInt</span>(arg1*m,<span class="number">10</span>)+<span class="built_in">parseInt</span>(arg2*m,<span class="number">10</span>))/m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然并卵，这个计算依然是不准确的，有空再想想。</p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Joel 2016-2020
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://shenjoel.github.io%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>
