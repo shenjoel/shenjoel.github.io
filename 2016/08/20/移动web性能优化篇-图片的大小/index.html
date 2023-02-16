@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>移动web性能优化篇-图片的大小</title>
+  <meta name="author" content="Joel">
+  <meta name="description" content="前端开发&amp;深入浅出">
+  
+  
+  <meta property="og:title" content="移动web性能优化篇-图片的大小"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Joel&#39;s blog"/>
+  <meta name="theme-color" content="#2874f0"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Joel&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="manifest" href="./manifest.json">
+  <!-- Add to home screen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Joel's blog PWA">
+  <link rel="apple-touch-icon" href="/img/180x180.png">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  <script async src="./js/index.js"></script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <button class="add-button">Add to home screen</button>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;Nice to meet you
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        移动web性能优化篇-图片的大小
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2016-08-20T09:40:50.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2016-08-20
+</time>
+
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/优化/">优化</a>·<a href="/tags/移动WEB/">移动WEB</a>·<a href="/tags/图片/">图片</a>
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%9B%BE%E7%89%87%E5%A4%A7%E5%B0%8F"><span class="toc-text">控制图片大小</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h3 id="控制图片大小"><a href="#控制图片大小" class="headerlink" title="控制图片大小"></a>控制图片大小</h3><p>图片高宽越大，意味着需要越多的网络开销。常见图片格式都经过了高度压缩，尺寸越大的图片还意味着浏览器在解码过程中需要耗费更多 CPU，解码之后的位图需要占用更多内存。在移动端，我们更应该关注图片大小。</p>
+<ul>
+<li><strong> 根据 DPR（window.devicePixelRatio，设备像素比）选择合适的图片尺寸。 </strong>现在的手机基本上都是高清屏，如果一味追求让图片更小而使用单倍图也不现实。这一点上，最佳实践是根据产品特性，结合用户 DPR 分布情况来选择合适的尺寸。例如在我们某个产品中：图片加载速度比图片质量更重要；用户 DPR 分布前三是：2、3、1.5。我们最终使用了 1.5 倍图，并且在图床缩放图片时，加了一点点锐化效果。最终图片体积很小，质量也尚可接受。</li>
+<li><strong> 处理好响应式图片（Responsive Image）。 </strong>移动上很多图片宽度不是固定像素值，例如通栏 Banner 图片的宽度是跟着设备走的。对于这种场景，使用 JS 获取设备宽度，拼出最适合当前设备的图片尺寸，交给图床进行缩放，无疑能在图片体积和质量上找到最佳平衡点。但这种做法并不可取，移动设备宽度各式各样，如果裁图规格太多，容易降低 CDN 缓存命中率。图床实时处理完图片再分发到 CDN 更耗时，在移动端让图片命中 CDN 缓存也很重要。处理响应式图片的最佳实践是根据用户屏幕尺寸分布，制定出几档裁图规则，页面根据用户设备宽度使用最合适的档位，并对重要的图片（例如头部焦点图）提前预热 CDN。</li>
+<li><strong> 使用 WEBP 格式。 </strong>有一种减少图片体积的灵丹妙药 —— 使用压缩比例更高的 WEBP 格式。《<a target="_blank" rel="noopener" href="http://blog.ibireme.com/2015/11/02/mobile_image_benchmark/">移动端图片格式调研</a>》这篇文章详细地对比了各种移动端图片格式及各自适用场景。对于 WEBP 的最佳实践是只要浏览器支持就用，虽然 WEBP 解码慢于 JPG，但在同等图片质量下，WEBP 体积通常比 JPG 小很多。</li>
+</ul>
+<p>要判断浏览器是否支持 WEBP，可以检查 HTTP 请求头部字段 <code>Accept</code> 的值是否包含 webp。例如这是 Chrome 给图片请求加的 <code>Accept</code>：</p>
+<blockquote>
+<p>Accept: image/webp,image/<em>,</em>/*;q=0.8</p>
+</blockquote>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Joel's blog
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://shenjoel.github.io%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>
